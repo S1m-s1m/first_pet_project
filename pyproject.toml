@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "pet-project"
+version = "0.1.0"
+description = ""
+authors = ["S1m-s1m <139076421+S1m-s1m@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
