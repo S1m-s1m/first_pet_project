@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'payment/process.html' %}
+{% load i18n %}
+{% load static %}
 
-</body>
-</html>
+{% block content %}
+    <div class="alert alert-danger text-center">
+        <h1 class="alert-heading">{% trans 'Your payment has not been processed' %}</h1>
+        <p>{% trans 'There was a problem processing your payment.' %}</p>
+    </div>
+{% endblock content %}

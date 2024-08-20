@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Thank you</title>
-</head>
-<body>
+{% extends 'order/order_detail.html' %}
+{% load i18n %}
+{% load static %}
 
-<a href="{% url 'catalog:catalog_view' %}"><button>Назад</button></a>
-<h1>Thank you</h1>
-<p>
-    Заказ был успешно оформлен. Мы отправили ваш номер заказа к вам на почту
-</p>
-
-</body>
-</html>
+{% block content %}
+<a href="{% url 'catalog:catalog_view' %}" class="btn btn-secondary mb-3">{% trans 'Back' %}</a>
+<div class="card">
+    <div class="card-body">
+        <h1 class="card-title">{% trans 'Thank You' %}</h1>
+        <p class="card-text">
+            {% trans 'Order was placed successfully. We sent a letter with the order number to your e-mail.' %}
+        </p>
+    </div>
+</div>
+{% endblock content %}

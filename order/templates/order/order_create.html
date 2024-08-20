@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<form method="post" enctype="multipart/form-data">
+{% extends 'order/order_detail.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data" class="form-group">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">send</button>
+    <button type="submit" class="btn btn-primary">{% trans 'send' %}</button>
 </form>
-</body>
-</html>
+{% endblock content %}

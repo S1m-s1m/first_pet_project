@@ -1,10 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'catalog/catalog_view.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans 'Brand details' %}{% endblock title %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <p><a href="{% url 'catalog:brand_list' %}" class="btn btn-secondary">{% trans 'Back' %}</a></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-center">
+            <h2>{{ object.name }}</h2>
+            <hr class="my-4" style="background-color: black;">
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mb-4" style="word-break: break-all;">
+                {% if object.image %}
+                    <img src="{{ object.image.url }}" class="card-img-top" alt="Brand Image">
+                {% else %}
+                    <img src="{% static 'catalog/img/photo_2024-04-04_14-55-47.jpg' %}" class="card-img-top" alt="Brand Image">
+                {% endif %}
+                <div class="card-body">
+                    <small>{% trans 'Description' %}</small>
+                    <p class="card-text">{{ object.description }}</p>
+                </div>
+                {% if user.is_staff %}
+                    <div class="card-footer text-center">
+                        <a href="{% url 'catalog:update_brand' pk=object.pk %}" class="btn btn-primary mr-2">{% trans 'Update' %}</a>
+                        <a href="{% url 'catalog:delete_brand' pk=object.pk %}" class="btn btn-danger">{% trans 'Delete' %}</a>
+                    </div>
+                {% endif %}
+                <div class="card-footer text-center">
+                    <a href="{% url 'catalog:catalog_view' %}?brand={{ object.slug }}" class="btn btn-success">{% trans 'Products' %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+

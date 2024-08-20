@@ -1,10 +1,143 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'catalog/catalog_view.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<div class="container mt-5">
+
+    <div class="row">
+        <div class="col-12">
+            <p><a href="{% url 'catalog:catalog_view' %}" class="btn btn-secondary">{% trans 'Back' %}</a></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            {% if object.image %}
+                <img src="{{ object.image.url }}" class="img-fluid rounded" alt="Product Image">
+            {% else %}
+                <img src="{% static 'catalog/img/photo_2024-04-04_14-55-47.jpg' %}" class="img-fluid rounded" alt="Product Image">
+            {% endif %}
+        </div>
+        <div class="col-md-6" style="word-break: break-all;">
+            <h1>{{ object.name }}</h1>
+            <p><strong>{% trans 'Description' %}:</strong> {{ object.description }}</p>
+            <p><strong>{% trans 'Category' %}:</strong> {{ object.category }}</p>
+            <p><strong>{% trans 'Brand' %}:</strong> {{ object.brand }}</p>
+            <p><strong>{% trans 'Price' %}:</strong> {{ object.price }}</p>
+            <p><strong>{% trans 'Size' %}:</strong> {{ object.size }}</p>
+            <p><strong>{% trans 'Availability' %}:</strong> {{ object.availability }}</p>
+
+            {% if user.is_staff %}
+                <div class="mt-4">
+                    <a href="{% url 'catalog:update_product' pk=object.pk %}" class="btn btn-outline-primary">{% trans 'Update' %}</a>
+                    <a href="{% url 'catalog:delete_product' pk=object.pk %}" class="btn btn-outline-danger">{% trans 'Delete' %}</a>
+                </div>
+            {% endif %}
+
+            <form action="{% url 'cart:cart_add' pk=object.pk %}" method="post" class="mt-4">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    {{ cart_form.quantity }}
+                    <button type="submit" class="btn btn-primary">{% trans 'Add to cart' %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% if recommended_products %}
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3>{% trans 'Similar products' %}</h3>
+        </div>
+        {% for p in recommended_products %}
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                {% if p.image %}
+                    <img src="{{ p.image.url }}" class="card-img-top" alt="Product Image" height="250">
+                {% else %}
+                    <img src="{% static 'catalog/img/photo_2024-04-04_14-55-47.jpg' %}" class="card-img-top" alt="Product Image" height="250">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ p.name }}</h5>
+                    <a href="{% url 'catalog:product_detail' pk=p.pk slug=p.slug %}" class="btn btn-primary">{% trans 'More details' %}</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3>{% trans 'Leave a review' %}</h3>
+            <form method="post" enctype="multipart/form-data" class="mb-4" id="FormReview">
+                {% csrf_token %}
+                <input type="hidden" name="parent" id="contactparent" value="">
+                <div class="mb-3">
+                    {{ review_form.text }}
+                </div>
+                <button type="submit" class="btn btn-primary">{% trans 'send' %}</button>
+            </form>
+
+            <h3>{% trans 'Reviews' %}</h3>
+            {% if reviews %}
+            <div class="list-group" style="word-break: break-all;">
+                {% for review in reviews %}
+                <div class="list-group-item">
+                    <div class="d-flex align-items-center">
+                        {% if review.author.avatar %}
+                            <img src="{{ review.author.avatar.url }}" class="rounded-circle me-3" alt="Avatar" style="width: 50px; height: 50px;">
+                        {% else %}
+                            <img src="{% static 'main_app/img/photo_2024-04-04_14-56-07.jpg' %}" class="rounded-circle me-3" alt="Avatar" style="width: 50px; height: 50px;">
+                        {% endif %}
+                        <div>
+                            <h5 class="mb-1">{{ review.author.username }}</h5>
+                            <p class="mb-1">{{ review.text }}</p>
+                            <p><small>{{ review.date }}</small></p>
+                            <a href="#FormReview" class="btn btn-outline-primary btn-sm" onclick="AddReview('{{ review.author.username }}', '{{ review.pk }}')">{% trans 'Response' %}</a>
+                            {% if user.is_staff %}
+                                <a href="{% url 'catalog:delete_review' pk=review.pk %}" class="btn btn-outline-danger btn-sm">{% trans 'Delete' %}</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% if review.get_child_reviews %}
+                    <div class="mt-3 ms-5">
+                        {% for child_review in review.get_child_reviews %}
+                        <div class="list-group-item">
+                            <div class="d-flex align-items-center">
+                                {% if child_review.author.avatar %}
+                                    <img src="{{ child_review.author.avatar.url }}" class="rounded-circle me-3" alt="Avatar" style="width: 50px; height: 50px;">
+                                {% else %}
+                                    <img src="{% static 'main_app/img/photo_2024-04-04_14-56-07.jpg' %}" class="rounded-circle me-3" alt="Avatar" style="width: 50px; height: 50px;">
+                                {% endif %}
+                                <div>
+                                    <h6 class="mb-1">{{ child_review.author.username }}</h6>
+                                    <p class="mb-1">{{ child_review.text }}</p>
+                                    <p><small>{{ child_review.date }}</small></p>
+                                    {% if user.is_staff %}
+                                        <a href="{% url 'catalog:delete_review' pk=child_review.pk %}" class="btn btn-outline-danger btn-sm">{% trans 'Delete' %}</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p>{% trans 'No reviews yet' %}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block script %}
+    function AddReview(username, pk) {
+        document.getElementById("contactparent").value = pk;
+        document.getElementById("contactcomment").innerText = `${username},`;
+    }
+{% endblock script %}

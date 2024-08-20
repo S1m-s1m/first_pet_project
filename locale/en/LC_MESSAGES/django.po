@@ -1,0 +1,586 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-20 19:10+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\cart\forms.py:5 .\payment\templates\payment\process.html:21
+msgid "Quantity"
+msgstr "Quantity"
+
+#: .\cart\forms.py:6 .\catalog\templates\catalog\brand_detail.html:36
+#: .\catalog\templates\catalog\product_detail.html:33
+msgid "Update"
+msgstr ""
+
+#: .\cart\templates\cart\cart_detail.html:6
+msgid "Cart details"
+msgstr ""
+
+#: .\cart\templates\cart\cart_detail.html:11
+#: .\catalog\templates\catalog\brand_detail.html:12
+#: .\catalog\templates\catalog\brand_list.html:13
+#: .\catalog\templates\catalog\create_brand.html:15
+#: .\catalog\templates\catalog\create_category.html:9
+#: .\catalog\templates\catalog\create_product.html:9
+#: .\catalog\templates\catalog\error_page.html:10
+#: .\catalog\templates\catalog\product_detail.html:10
+#: .\catalog\templates\catalog\translate_category.html:15
+#: .\catalog\templates\catalog\update_brand.html:15
+#: .\catalog\templates\catalog\update_product.html:15
+msgid "Back"
+msgstr ""
+
+#: .\cart\templates\cart\cart_detail.html:14
+msgid "Your shopping cart"
+msgstr ""
+
+#: .\cart\templates\cart\cart_detail.html:21
+#: .\catalog\templates\catalog\catalog_view.html:34
+#: .\catalog\templates\catalog\product_detail.html:27
+#: .\payment\templates\payment\process.html:20
+msgid "Price"
+msgstr ""
+
+#: .\cart\templates\cart\cart_detail.html:27
+msgid "Remove"
+msgstr ""
+
+#: .\cart\templates\cart\cart_detail.html:31
+msgid "Your cart is empty"
+msgstr ""
+
+#: .\cart\templates\cart\cart_detail.html:39
+msgid "Subtotal"
+msgstr ""
+
+#: .\cart\templates\cart\cart_detail.html:44
+#, fuzzy
+#| msgid "Coupon"
+msgid "coupon"
+msgstr "Coupon"
+
+#: .\cart\templates\cart\cart_detail.html:63
+msgid "Apply"
+msgstr ""
+
+#: .\cart\templates\cart\cart_detail.html:76
+msgid "Total price"
+msgstr ""
+
+#: .\cart\templates\cart\cart_detail.html:81
+msgid "Place order"
+msgstr ""
+
+#: .\cart\templates\cart\cart_detail.html:84
+msgid "Clear"
+msgstr ""
+
+#: .\cart\templates\cart\cart_detail.html:91
+#: .\catalog\templates\catalog\product_detail.html:51
+msgid "Similar products"
+msgstr ""
+
+#: .\cart\templates\cart\error_page.html:7
+#: .\catalog\templates\catalog\error_page.html:17
+msgid "We apologize"
+msgstr ""
+
+#: .\cart\views.py:73 .\cart\views.py:83 .\cart\views.py:106
+#: .\cart\views.py:116 .\catalog\views.py:72 .\catalog\views.py:163
+#: .\catalog\views.py:207 .\catalog\views.py:260 .\catalog\views.py:269
+msgid "There is no such product"
+msgstr ""
+
+#: .\catalog\models.py:25 .\catalog\models.py:42 .\catalog\models.py:56
+msgid "name"
+msgstr ""
+
+#: .\catalog\models.py:27 .\catalog\models.py:57
+msgid "description"
+msgstr ""
+
+#: .\catalog\models.py:29 .\catalog\models.py:63
+msgid "image"
+msgstr ""
+
+#: .\catalog\models.py:36 .\catalog\templates\catalog\catalog_view.html:33
+#: .\catalog\templates\catalog\product_detail.html:26
+msgid "Brand"
+msgstr ""
+
+#: .\catalog\models.py:37 .\catalog\templates\catalog\brand_list.html:19
+#: .\catalog\templates\catalog\navbar.html:14
+msgid "Brands"
+msgstr ""
+
+#: .\catalog\models.py:50 .\catalog\templates\catalog\catalog_view.html:32
+#: .\catalog\templates\catalog\product_detail.html:25
+msgid "Category"
+msgstr ""
+
+#: .\catalog\models.py:51
+msgid "Categories"
+msgstr ""
+
+#: .\catalog\models.py:59
+msgid "category"
+msgstr ""
+
+#: .\catalog\models.py:60
+msgid "brand"
+msgstr ""
+
+#: .\catalog\models.py:61
+msgid "price"
+msgstr ""
+
+#: .\catalog\models.py:62
+msgid "size"
+msgstr ""
+
+#: .\catalog\models.py:64
+msgid "availability"
+msgstr ""
+
+#: .\catalog\models.py:65
+msgid "created"
+msgstr ""
+
+#: .\catalog\models.py:72 .\payment\templates\payment\process.html:19
+msgid "Product"
+msgstr ""
+
+#: .\catalog\models.py:73 .\catalog\templates\catalog\brand_detail.html:41
+msgid "Products"
+msgstr ""
+
+#: .\catalog\models.py:76
+msgid "product"
+msgstr ""
+
+#: .\catalog\models.py:77
+msgid "author"
+msgstr ""
+
+#: .\catalog\models.py:78
+msgid "text"
+msgstr ""
+
+#: .\catalog\models.py:79
+msgid "date"
+msgstr ""
+
+#: .\catalog\models.py:80
+msgid "parent"
+msgstr ""
+
+#: .\catalog\models.py:90
+msgid "Review"
+msgstr ""
+
+#: .\catalog\models.py:91 .\catalog\templates\catalog\product_detail.html:83
+msgid "Reviews"
+msgstr ""
+
+#: .\catalog\templates\catalog\brand_detail.html:5
+msgid "Brand details"
+msgstr ""
+
+#: .\catalog\templates\catalog\brand_detail.html:31
+#: .\catalog\templates\catalog\catalog_view.html:31
+#: .\catalog\templates\catalog\product_detail.html:24
+msgid "Description"
+msgstr ""
+
+#: .\catalog\templates\catalog\brand_detail.html:37
+#: .\catalog\templates\catalog\product_detail.html:34
+#: .\catalog\templates\catalog\product_detail.html:100
+#: .\catalog\templates\catalog\product_detail.html:119
+msgid "Delete"
+msgstr ""
+
+#: .\catalog\templates\catalog\brand_list.html:5
+msgid "Brand list"
+msgstr ""
+
+#: .\catalog\templates\catalog\brand_list.html:38
+#: .\catalog\templates\catalog\catalog_view.html:37
+#: .\catalog\templates\catalog\product_detail.html:63
+msgid "More details"
+msgstr ""
+
+#: .\catalog\templates\catalog\brand_list.html:50
+#: .\catalog\templates\catalog\brand_list.html:52
+#: .\catalog\templates\catalog\catalog_view.html:47
+#: .\catalog\templates\catalog\catalog_view.html:49
+msgid "Previous"
+msgstr ""
+
+#: .\catalog\templates\catalog\brand_list.html:65
+#: .\catalog\templates\catalog\brand_list.html:67
+#: .\catalog\templates\catalog\catalog_view.html:62
+#: .\catalog\templates\catalog\catalog_view.html:64
+msgid "Next"
+msgstr ""
+
+#: .\catalog\templates\catalog\catalog_view.html:7
+#: .\catalog\templates\catalog\catalog_view.html:19
+#: .\main_app\templates\main_app\main.html:27
+msgid "Catalog"
+msgstr ""
+
+#: .\catalog\templates\catalog\catalog_view.html:35
+#: .\catalog\templates\catalog\product_detail.html:28
+msgid "Size"
+msgstr ""
+
+#: .\catalog\templates\catalog\catalog_view.html:36
+#: .\catalog\templates\catalog\product_detail.html:29
+msgid "Availability"
+msgstr ""
+
+#: .\catalog\templates\catalog\create_brand.html:8
+msgid "Create brand"
+msgstr ""
+
+#: .\catalog\templates\catalog\create_brand.html:25
+#: .\catalog\templates\catalog\translate_category.html:26
+#: .\catalog\templates\catalog\update_brand.html:26
+#: .\catalog\templates\catalog\update_product.html:26
+#: .\main_app\templates\main_app\main.html:37
+msgid "Language"
+msgstr ""
+
+#: .\catalog\templates\catalog\create_brand.html:44
+#: .\catalog\templates\catalog\create_category.html:23
+#: .\catalog\templates\catalog\create_product.html:23
+#: .\catalog\templates\catalog\translate_category.html:45
+#: .\catalog\templates\catalog\update_brand.html:44
+#: .\catalog\templates\catalog\update_product.html:44
+msgid "save"
+msgstr ""
+
+#: .\catalog\templates\catalog\create_category.html:14
+msgid "Create category"
+msgstr ""
+
+#: .\catalog\templates\catalog\create_product.html:14
+msgid "Create product"
+msgstr ""
+
+#: .\catalog\templates\catalog\delete_brand.html:8
+#: .\catalog\templates\catalog\delete_category.html:8
+msgid "Are you sure you want to delete this category"
+msgstr ""
+
+#: .\catalog\templates\catalog\delete_brand.html:9
+#: .\catalog\templates\catalog\delete_category.html:9
+#: .\catalog\templates\catalog\delete_product.html:9
+#: .\catalog\templates\catalog\delete_review.html:9
+msgid "Yes"
+msgstr ""
+
+#: .\catalog\templates\catalog\delete_brand.html:10
+#: .\catalog\templates\catalog\delete_category.html:10
+#: .\catalog\templates\catalog\delete_product.html:10
+#: .\catalog\templates\catalog\delete_review.html:10
+msgid "No"
+msgstr ""
+
+#: .\catalog\templates\catalog\delete_product.html:8
+msgid "Are you sure you want to delete this brand"
+msgstr ""
+
+#: .\catalog\templates\catalog\delete_review.html:8
+msgid "Are you sure you want to delete review"
+msgstr ""
+
+#: .\catalog\templates\catalog\navbar.html:8
+msgid "My cart"
+msgstr ""
+
+#: .\catalog\templates\catalog\navbar.html:11
+msgid "My orders"
+msgstr ""
+
+#: .\catalog\templates\catalog\navbar.html:18
+msgid "Add product"
+msgstr ""
+
+#: .\catalog\templates\catalog\navbar.html:21
+msgid "Add brand"
+msgstr ""
+
+#: .\catalog\templates\catalog\navbar.html:24
+msgid "Add category"
+msgstr ""
+
+#: .\catalog\templates\catalog\navbar.html:37
+msgid "Select a category"
+msgstr ""
+
+#: .\catalog\templates\catalog\navbar.html:41
+#: .\catalog\templates\catalog\navbar.html:51
+msgid "All products"
+msgstr ""
+
+#: .\catalog\templates\catalog\navbar.html:47
+msgid "Select a brand"
+msgstr ""
+
+#: .\catalog\templates\catalog\navbar.html:57
+#: .\catalog\templates\catalog\navbar.html:58
+msgid "Search"
+msgstr ""
+
+#: .\catalog\templates\catalog\product_detail.html:42
+msgid "Add to cart"
+msgstr ""
+
+#: .\catalog\templates\catalog\product_detail.html:73
+msgid "Leave a review"
+msgstr ""
+
+#: .\catalog\templates\catalog\product_detail.html:80
+#: .\main_app\templates\main_app\profile.html:13
+msgid "send"
+msgstr ""
+
+#: .\catalog\templates\catalog\product_detail.html:98
+msgid "Response"
+msgstr ""
+
+#: .\catalog\templates\catalog\product_detail.html:131
+msgid "No reviews yet"
+msgstr ""
+
+#: .\catalog\templates\catalog\translate_category.html:8
+msgid "Translate category"
+msgstr ""
+
+#: .\catalog\templates\catalog\update_brand.html:8
+msgid "Update brand"
+msgstr ""
+
+#: .\catalog\templates\catalog\update_product.html:8
+msgid "Update product"
+msgstr ""
+
+#: .\catalog\views.py:97 .\catalog\views.py:106
+msgid "There is no such review"
+msgstr ""
+
+#: .\catalog\views.py:147 .\catalog\views.py:189 .\catalog\views.py:297
+#: .\catalog\views.py:346 .\catalog\views.py:409 .\catalog\views.py:477
+msgid "Incorrect form filling"
+msgstr ""
+
+#: .\catalog\views.py:315 .\catalog\views.py:357 .\catalog\views.py:367
+#: .\catalog\views.py:377 .\catalog\views.py:386
+msgid "There is no such brand"
+msgstr ""
+
+#: .\catalog\views.py:415 .\catalog\views.py:483
+msgid "Such category already exists"
+msgstr ""
+
+#: .\catalog\views.py:431 .\catalog\views.py:441 .\catalog\views.py:452
+#: .\catalog\views.py:491
+msgid "There is no such category"
+msgstr ""
+
+#: .\coupon\forms.py:5 .\coupon\models.py:37
+msgid "Coupon"
+msgstr "Coupon"
+
+#: .\coupon\models.py:25
+msgid "code"
+msgstr ""
+
+#: .\coupon\models.py:26
+msgid "valid from"
+msgstr ""
+
+#: .\coupon\models.py:27
+msgid "valid to"
+msgstr ""
+
+#: .\coupon\models.py:28
+msgid "discount"
+msgstr ""
+
+#: .\coupon\models.py:29
+msgid "active"
+msgstr ""
+
+#: .\coupon\models.py:30
+msgid "max uses"
+msgstr ""
+
+#: .\coupon\models.py:31
+msgid "used count"
+msgstr ""
+
+#: .\coupon\models.py:38
+#, fuzzy
+#| msgid "Coupon"
+msgid "Coupons"
+msgstr "Coupon"
+
+#: .\coupon\views.py:50 .\coupon\views.py:51
+msgid "This coupon has been used the maximum number of times"
+msgstr ""
+
+#: .\coupon\views.py:86
+msgid "This coupon does not exist or is not valid"
+msgstr ""
+
+#: .\main_app\forms.py:7
+msgid "password1"
+msgstr ""
+
+#: .\main_app\forms.py:8
+msgid "password2"
+msgstr ""
+
+#: .\main_app\forms.py:35 .\main_app\models.py:33
+msgid "email"
+msgstr ""
+
+#: .\main_app\forms.py:36
+msgid "password"
+msgstr ""
+
+#: .\main_app\models.py:32
+msgid "username"
+msgstr ""
+
+#: .\main_app\models.py:34
+msgid "avatar"
+msgstr ""
+
+#: .\main_app\models.py:35
+msgid "first name"
+msgstr ""
+
+#: .\main_app\models.py:36
+msgid "last name"
+msgstr ""
+
+#: .\main_app\models.py:48
+msgid "User"
+msgstr ""
+
+#: .\main_app\models.py:49
+msgid "Users"
+msgstr ""
+
+#: .\main_app\templates\main_app\login_form.html:13
+msgid "Send"
+msgstr ""
+
+#: .\main_app\templates\main_app\main.html:7
+msgid "Main"
+msgstr ""
+
+#: .\main_app\templates\main_app\main.html:17
+msgid "Welcome"
+msgstr "Welcome"
+
+#: .\main_app\templates\main_app\main.html:25
+msgid "Exit"
+msgstr ""
+
+#: .\main_app\templates\main_app\main.html:26
+msgid "Profile"
+msgstr ""
+
+#: .\main_app\templates\main_app\main.html:31
+msgid "Register"
+msgstr ""
+
+#: .\main_app\templates\main_app\main.html:32
+msgid "Log in"
+msgstr ""
+
+#: .\main_app\views.py:28 .\main_app\views.py:30
+msgid "Register form"
+msgstr ""
+
+#: .\main_app\views.py:45
+msgid "User was not found"
+msgstr ""
+
+#: .\main_app\views.py:46 .\main_app\views.py:49 .\main_app\views.py:52
+msgid "Authentication form"
+msgstr ""
+
+#: .\main_app\views.py:48
+msgid "Form data is invalid"
+msgstr ""
+
+#: .\payment\templates\payment\canceled.html:7
+msgid "Your payment has not been processed"
+msgstr ""
+
+#: .\payment\templates\payment\canceled.html:8
+msgid "There was a problem processing your payment."
+msgstr ""
+
+#: .\payment\templates\payment\completed.html:5
+msgid "Payment Successful"
+msgstr ""
+
+#: .\payment\templates\payment\completed.html:9
+msgid "Your payment was successful"
+msgstr ""
+
+#: .\payment\templates\payment\completed.html:10
+msgid "Your payment has been processed successfully."
+msgstr ""
+
+#: .\payment\templates\payment\process.html:7
+msgid "Payment process"
+msgstr ""
+
+#: .\payment\templates\payment\process.html:14
+msgid "Order summary"
+msgstr ""
+
+#: .\payment\templates\payment\process.html:18
+msgid "Image"
+msgstr ""
+
+#: .\payment\templates\payment\process.html:22
+msgid "In Total"
+msgstr ""
+
+#: .\payment\templates\payment\process.html:38
+msgid "Total"
+msgstr ""
+
+#: .\payment\templates\payment\process.html:45
+msgid "Pay now"
+msgstr ""
+
+#: .\pet_project\settings.py:213
+msgid "English"
+msgstr "English"
+
+#: .\pet_project\settings.py:214
+msgid "Russian"
+msgstr "Russian"

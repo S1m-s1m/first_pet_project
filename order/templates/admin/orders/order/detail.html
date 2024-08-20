@@ -1,10 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "admin/base_site.html" %}
+{% load static %}
+{% load i18n %}
+{% block extrastyle %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/admin.css' %}" />
+{% endblock %}
+{% block title %}
+    {% trans 'Order' %} {{ order.pk }} {{ block.super }}
+{% endblock %}
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a> &rsaquo;
+        <a href="{% url 'admin:order_order_changelist' %}">{% trans 'Orders' %}</a>
+        &rsaquo;
+        <a href="{% url 'admin:order_order_change' order.id %}">{% trans 'Order' %} {{ order.id }}</a>
+        &rsaquo; {% trans 'More detail' %}
+    </div>
+{% endblock %}
+{% block content %}
+    <h1>{% trans 'Order' %} {{ order.pk }}</h1>
+    <ul class="object-tools">
+        <li>
+            <a href="#" onclick="window.print();">{% trans 'Print order' %}</a>
+        </li>
+    </ul>
+    <table>
+        <tr>
+            <th>{% trans 'Created' %}</th>
+            <td>{{ order.created }}</td>
+        </tr>
+        <tr>
+            <th>{% trans 'Customer' %}</th>
+            <td>{{ order.first_name }} {{ order.last_name }}</td>
+        </tr>
+        <tr>
+            <th>{% trans 'E-mail' %}</th>
+            <td><a href="mailto:{{ order.email }}">{{ order.email }}</a></td>
+        </tr>
+        <tr>
+            <th>{% trans 'Address' %}</th>
+            <td>{{ order.address }}, {{ order.city }}</td>
+        </tr>
+        <tr>
+            <th>{% trans 'Total cost' %}</th>
+            <td>${{ order.total_order_cost }}</td>
+        </tr>
+        <tr>
+            <th>{% trans 'Status' %}</th>
+            <td>{% if order.paid %}{% trans 'Paid' %}{% else %}{% trans 'Pending payment' %}{% endif %}</td>
+        </tr>
 
-</body>
-</html>
+        <th>Stripe payment</th>
+        <td>
+        {% if order.stripe_id %}
+            <a href="{{ order.get_stripe_url }}" target="_blank">
+                {{ order.stripe_id }}
+            </a>
+        {% endif %}
+        </td>
+
+    </table>
+
+    <div class="module">
+        <div class="tabular inline-related last-related">
+            <table>
+                <h2>{% trans 'Item bought' %}</h2>
+                <thead>
+                <tr>
+                    <th>{% trans 'Product' %}</th>
+                    <th>{% trans 'Price' %}</th>
+                    <th>{% trans 'Quantity' %}</th>
+                    <th>{% trans 'Total price' %}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in order %}
+                    <tr class="row{% cycle '1' '2' %}">
+                        <td>{{ item.product.name }}</td>
+                        <td class="num">${{ item.price }}</td>
+                        <td class="num">{{ item.quantity }}</td>
+                        <td class="num">{{ item.total_item_cost }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

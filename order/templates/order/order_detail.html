@@ -1,10 +1,59 @@
-<!DOCTYPE html>
+{% load i18n %}
+{% load static %}
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% trans 'Order details' %}{% endblock title %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
-<body>
-$END$
+<body class="container mt-4">
+
+{% block content %}
+    <div class="card mb-4">
+        <div class="card-header">
+            <h2 class="mb-0">{% trans 'Order Details' %}</h2>
+        </div>
+        <div class="card-body">
+            <p><strong>{% trans 'Address' %}:</strong> {{ object.address }}</p>
+            <p><strong>{% trans 'First Name' %}:</strong> {{ object.first_name }}</p>
+            <p><strong>{% trans 'Last Name' %}:</strong> {{ object.last_name }}</p>
+            <p><strong>{% trans 'Email' %}:</strong> {{ object.email }}</p>
+            <p><strong>{% trans 'City' %}:</strong> {{ object.city }}</p>
+            <p><strong>{% trans 'Order Date' %}:</strong> {{ object.created }}</p>
+            <p><strong>{% trans 'Total Order Cost' %}:</strong> ${{ object.total_order_cost }}</p>
+
+            <p class="fw-bold text-{{ object.paid|yesno:'success,danger' }}">
+                {% if object.paid %}
+                    {% trans 'Paid' %}
+                {% else %}
+                    {% trans 'Unpaid' %}
+                {% endif %}
+            </p>
+        </div>
+    </div>
+
+    <h3 class="mb-3">{% trans 'Goods' %}</h3>
+    <div class="row">
+        {% for item in object %}
+            <div class="col-md-6 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <p class="card-title font-weight-bold">{{ item.product.name }} ({{ item.quantity }})</p>
+                        <p class="card-text">{% trans 'Cost' %}: ${{ item.price }}</p>
+                        <p class="card-text">{% trans 'Total Cost' %}: ${{ item.total_item_cost }}</p>
+                        <a href="{% url 'catalog:product_detail' pk=item.product.pk slug=item.product.slug %}" class="btn btn-primary">{% trans 'More details' %}</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock content %}
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>

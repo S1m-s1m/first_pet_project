@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'order/order_detail.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+<div class="list-group">
+    {% if objects %}
+        {% for object in objects %}
+            <div class="list-group-item">
+                <p>{{ object.created }}</p>
+                <p>{{ object.address }}</p>
+                <a href="{% url 'order:order_detail' pk=object.pk %}" class="btn btn-info">{% trans 'More details' %}</a>
+            </div>
+            {% if not forloop.last %}
+                <hr>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <p>{% trans 'No orders yet' %}</p>
+    {% endif %}
+</div>
+{% endblock content %}

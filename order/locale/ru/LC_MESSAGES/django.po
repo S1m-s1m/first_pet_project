@@ -1,0 +1,309 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-20 19:10+0300\n"
+"PO-Revision-Date: 2024-05-06 22:12+0000\n"
+"Last-Translator: admin admin <2007kim.maksim@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%"
+"100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Translated-Using: django-rosetta 0.10.0\n"
+
+#: .\order\models.py:17
+msgid "User"
+msgstr "Пользователь"
+
+#: .\order\models.py:18
+msgid "address"
+msgstr "адресс"
+
+#: .\order\models.py:19
+msgid "first name"
+msgstr "имя"
+
+#: .\order\models.py:20
+msgid "last name"
+msgstr "фамилия"
+
+#: .\order\models.py:21
+msgid "city"
+msgstr "город"
+
+#: .\order\models.py:22
+msgid "email"
+msgstr "эл.почта"
+
+#: .\order\models.py:23
+msgid "paid"
+msgstr "оплачено"
+
+#: .\order\models.py:24
+msgid "created"
+msgstr "дата создания"
+
+#: .\order\models.py:25
+msgid "coupon"
+msgstr "купон"
+
+#: .\order\models.py:26
+msgid "discount"
+msgstr "скидка"
+
+#: .\order\models.py:76 .\order\templates\admin\orders\order\detail.html:8
+#: .\order\templates\admin\orders\order\detail.html:15
+#: .\order\templates\admin\orders\order\detail.html:20
+msgid "Order"
+msgstr "Заказ"
+
+#: .\order\models.py:77 .\order\templates\admin\orders\order\detail.html:13
+msgid "Orders"
+msgstr "Заказы"
+
+#: .\order\models.py:80
+msgid "product"
+msgstr "продукт"
+
+#: .\order\models.py:81
+msgid "order"
+msgstr "заказ"
+
+#: .\order\models.py:82
+msgid "price"
+msgstr "цена"
+
+#: .\order\models.py:83
+msgid "quantity"
+msgstr "количество"
+
+#: .\order\models.py:93
+msgid "Order item"
+msgstr "Элемент заказа"
+
+#: .\order\models.py:94
+msgid "Order items"
+msgstr "Элементы заказа"
+
+#: .\order\templates\admin\orders\order\detail.html:12
+msgid "Home"
+msgstr "Домой"
+
+#: .\order\templates\admin\orders\order\detail.html:16
+msgid "More detail"
+msgstr "Подробнее"
+
+#: .\order\templates\admin\orders\order\detail.html:23
+msgid "Print order"
+msgstr "Распечатать заказ"
+
+#: .\order\templates\admin\orders\order\detail.html:28
+msgid "Created"
+msgstr "Дата создания"
+
+#: .\order\templates\admin\orders\order\detail.html:32
+msgid "Customer"
+msgstr "Клиент"
+
+#: .\order\templates\admin\orders\order\detail.html:36
+msgid "E-mail"
+msgstr "Эл.почта"
+
+#: .\order\templates\admin\orders\order\detail.html:40
+#: .\order\templates\order\order_detail.html:18
+msgid "Address"
+msgstr "адресс"
+
+#: .\order\templates\admin\orders\order\detail.html:44
+msgid "Total cost"
+msgstr "Итоговая цена"
+
+#: .\order\templates\admin\orders\order\detail.html:48
+msgid "Status"
+msgstr "Статус"
+
+#: .\order\templates\admin\orders\order\detail.html:49
+#: .\order\templates\admin\orders\order\pdf.html:66
+#: .\order\templates\order\order_detail.html:28
+msgid "Paid"
+msgstr "оплачено"
+
+#: .\order\templates\admin\orders\order\detail.html:49
+#: .\order\templates\admin\orders\order\pdf.html:68
+msgid "Pending payment"
+msgstr "Ожидающий платеж"
+
+#: .\order\templates\admin\orders\order\detail.html:66
+msgid "Item bought"
+msgstr "Приобретенный товар"
+
+#: .\order\templates\admin\orders\order\detail.html:69
+#: .\order\templates\admin\orders\order\pdf.html:24
+msgid "Product"
+msgstr "Товар"
+
+#: .\order\templates\admin\orders\order\detail.html:70
+#: .\order\templates\admin\orders\order\pdf.html:25
+msgid "Price"
+msgstr "Цена"
+
+#: .\order\templates\admin\orders\order\detail.html:71
+#: .\order\templates\admin\orders\order\pdf.html:26
+msgid "Quantity"
+msgstr "количество"
+
+#: .\order\templates\admin\orders\order\detail.html:72
+msgid "Total price"
+msgstr "Итоговая цена"
+
+#: .\order\templates\admin\orders\order\pdf.html:6
+msgid "My Shop"
+msgstr "Мой магазин"
+
+#: .\order\templates\admin\orders\order\pdf.html:8
+msgid "Invoice"
+msgstr "Счет"
+
+#: .\order\templates\admin\orders\order\pdf.html:13
+msgid "Bill to"
+msgstr "Чек от"
+
+#: .\order\templates\admin\orders\order\pdf.html:20
+msgid "Items bought"
+msgstr "Приобретенные товары"
+
+#: .\order\templates\admin\orders\order\pdf.html:27
+#: .\order\templates\order\order_detail.html:43
+msgid "Cost"
+msgstr "Цена"
+
+#: .\order\templates\admin\orders\order\pdf.html:59
+msgid "Total"
+msgstr "Итого"
+
+#: .\order\templates\order\created_order.html:6
+msgid "Back"
+msgstr "назад"
+
+#: .\order\templates\order\created_order.html:9
+#, fuzzy
+#| msgid "Thank you"
+msgid "Thank You"
+msgstr "спасибо"
+
+#: .\order\templates\order\created_order.html:11
+#, fuzzy
+#| msgid ""
+#| "Order was placed successfully. We sent letter with number of order to "
+#| "your e-mail"
+msgid ""
+"Order was placed successfully. We sent a letter with the order number to "
+"your e-mail."
+msgstr ""
+"Заказ был успешно оформлен. Мы отправили письмо с номером заказа на вашу "
+"почту"
+
+#: .\order\templates\order\error_page.html:7
+msgid "We apologize"
+msgstr "приносим свои извинения"
+
+#: .\order\templates\order\order_create.html:9
+msgid "send"
+msgstr "отправить"
+
+#: .\order\templates\order\order_detail.html:7
+#, fuzzy
+#| msgid "More details"
+msgid "Order details"
+msgstr "Подробнее"
+
+#: .\order\templates\order\order_detail.html:15
+#, fuzzy
+#| msgid "More details"
+msgid "Order Details"
+msgstr "Подробнее"
+
+#: .\order\templates\order\order_detail.html:19
+#, fuzzy
+#| msgid "first name"
+msgid "First Name"
+msgstr "имя"
+
+#: .\order\templates\order\order_detail.html:20
+#, fuzzy
+#| msgid "last name"
+msgid "Last Name"
+msgstr "фамилия"
+
+#: .\order\templates\order\order_detail.html:21
+#, fuzzy
+#| msgid "E-mail"
+msgid "Email"
+msgstr "Эл.почта"
+
+#: .\order\templates\order\order_detail.html:22
+#, fuzzy
+#| msgid "city"
+msgid "City"
+msgstr "город"
+
+#: .\order\templates\order\order_detail.html:23
+#, fuzzy
+#| msgid "Order item"
+msgid "Order Date"
+msgstr "Элемент заказа"
+
+#: .\order\templates\order\order_detail.html:24
+#, fuzzy
+#| msgid "Total cost"
+msgid "Total Order Cost"
+msgstr "Итоговая цена"
+
+#: .\order\templates\order\order_detail.html:30
+msgid "Unpaid"
+msgstr "Не оплачено"
+
+#: .\order\templates\order\order_detail.html:36
+msgid "Goods"
+msgstr "Вещи"
+
+#: .\order\templates\order\order_detail.html:44
+#, fuzzy
+#| msgid "Total cost"
+msgid "Total Cost"
+msgstr "Итоговая цена"
+
+#: .\order\templates\order\order_detail.html:45
+#: .\order\templates\order\order_history.html:12
+msgid "More details"
+msgstr "Подробнее"
+
+#: .\order\templates\order\order_history.html:19
+msgid "No orders yet"
+msgstr ""
+
+#: .\order\views.py:60
+msgid "Yor cart is empty"
+msgstr "Ваша корзина пуста"
+
+#: .\order\views.py:71 .\order\views.py:80
+msgid "There is no such product"
+msgstr "Такого товара не существует"
+
+#~ msgid "Title"
+#~ msgstr "Название"
+
+#~ msgid "cost"
+#~ msgstr "цена"
+
+#~ msgid "total_cost"
+#~ msgstr "Итоговая цена"

@@ -1,12 +1,81 @@
-<!DOCTYPE html>
+{% load static %}
+{% load i18n %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{% block title %}{% trans 'Catalog' %}{% endblock title %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'catalog/css/catalog.css' %}">
 </head>
 <body>
-  catalog
-  <p>shirts</p>
-  <p>trousers</p>
+
+{% include "catalog/navbar.html" %}
+
+
+{% block content %}
+
+    <div class="container">
+        <h1>{% trans 'Catalog' %}</h1>
+        <div class="row">
+            {% for object in page_obj %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100" style="width: 18rem">
+                        {% if object.image %}
+                            <img class="card-img-top" src="{{ object.image.url }}" alt="Product Image" height="300">
+                        {% else %}
+                            <img class="card-img-top" src="{% static 'catalog/img/photo_2024-04-04_14-55-47.jpg' %}" alt="Product Image" height="300">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ object.name }}</h5>
+                            <small>{% trans 'Description' %}</small><p class="card-text">{{ object.description }}</p>
+                            <small>{% trans 'Category' %}</small><p class="card-text">{{ object.category }}</p>
+                            <small>{% trans 'Brand' %}</small><p class="card-text">{{ object.brand }}</p>
+                            <small>{% trans 'Price' %}</small><p class="card-text">{{ object.price }}</p>
+                            <small>{% trans 'Size' %}</small><p class="card-text">{{ object.size }}</p>
+                            <small>{% trans 'Availability' %}</small><p class="card-text">{{ object.availability }}</p>
+                            <a href="{% url 'catalog:product_detail' pk=object.pk slug=object.slug %}" class="btn btn-primary stretched-link">{% trans 'More details' %}</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?{% if query_string %}{{ query_string }}&{% endif %}page={{ page_obj.previous_page_number }}" aria-label="{% trans 'Previous' %}">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">{% trans 'Previous' %}</span>
+                        </a>
+                    </li>
+                {% endif %}
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <li class="page-item active"><a class="page-link" href="#">{{ num }} <span class="sr-only">(current)</span></a></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?{% if query_string %}{{ query_string }}&{% endif %}page={{ num }}">{{ num }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?{% if query_string %}{{ query_string }}&{% endif %}page={{ page_obj.next_page_number }}" aria-label="{% trans 'Next' %}">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">{% trans 'Next' %}</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+
+{% endblock content %}
+
+<script>
+{% block script %}
+{% endblock script %}
+</script>
+
+</div>
 </body>
 </html>

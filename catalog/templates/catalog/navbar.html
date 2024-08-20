@@ -4,51 +4,98 @@
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'catalog:create_brand' %}">{% trans 'Add brand' %}</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'catalog:create_category' %}">{% trans 'Add category' %}</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'catalog:brand_list' %}">{% trans 'Brands' %}</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'catalog:create_product' %}">{% trans 'Add product' %}</a>
-        </li>
-
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'cart:cart_detail' %}">{% trans 'My cart' %}</a>
         </li>
-
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'order:order_history' %}">{% trans 'My orders' %}</a>
         </li>
-
         <li class="nav-item">
-          <form method="get" action="{% url 'catalog:catalog_view' %}" class="d-flex align-items-center">
-            <select name="category" class="form-select" onchange="this.form.submit()">
-              <option value="">{% trans 'Select a category' %}</option>
-              {% for category in categories %}
-                <option value="{{ category.slug }}">
-                    {{ category.name }}
-                </option>
-              {% endfor %}
-            </select>
-          </form>
+          <a class="nav-link active" aria-current="page" href="{% url 'catalog:brand_list' %}">{% trans 'Brands' %}</a>
         </li>
-
+        {% if user.is_staff %}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'catalog:create_product' %}">{% trans 'Add product' %}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'catalog:create_brand' %}">{% trans 'Add brand' %}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'catalog:create_category' %}">{% trans 'Add category' %}</a>
+        </li>
+        {% endif %}
       </ul>
-
-      <form method="get" action="{% url 'catalog:catalog_view' %}" class="d-flex" role="search">
-          <input type='search' name='search' class="form-control me-2" placeholder="{% trans 'Search' %}" aria-label="Search">
-          <button type="submit" class="btn btn-outline-success">{% trans "Search" %}</button>
-      </form>
-
     </div>
   </div>
 </nav>
+
+{% if request.resolver_match.view_name == 'catalog:catalog_view' %}
+<div class="container-fluid mt-2">
+  <div class="row">
+    <div class="col-lg-3">
+      <select name="category" class="form-select" id="category-select">
+        <option value="">{% trans 'Select a category' %}</option>
+        {% for category in categories %}
+        <option value="{{ category.slug }}">{{ category.name }}</option>
+        {% endfor %}
+        <option value="">{% trans 'All products' %}</option>
+      </select>
+    </div>
+
+    <div class="col-lg-3">
+      <select name="brand" class="form-select" id="brand-select">
+        <option value="">{% trans 'Select a brand' %}</option>
+        {% for brand in brands %}
+        <option value="{{ brand.slug }}">{{ brand.name }}</option>
+        {% endfor %}
+        <option value="">{% trans 'All products' %}</option>
+      </select>
+    </div>
+
+    <div class="col-lg-6">
+      <form id="search-form" action="{% url 'catalog:catalog_view' %}" class="d-flex" role="search">
+        <input type="search" name="search" id="search-input" class="form-control me-2" placeholder="{% trans 'Search' %}" aria-label="Search">
+        <button type="submit" class="btn btn-outline-success">{% trans "Search" %}</button>
+      </form>
+    </div>
+  </div>
+{% endif %}
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        function updateURLParameter(param, value) {
+            let searchParams = new URLSearchParams(window.location.search);
+            if (value) {
+                searchParams.set(param, value);
+            } else {
+                searchParams.delete(param);
+            }
+            history.replaceState(null, '', '?' + searchParams.toString());
+        }
+
+        $('#category-select').on('change', function() {
+            let category = $(this).val();
+            updateURLParameter('category', category);
+        });
+
+        $('#brand-select').on('change', function() {
+            let brand = $(this).val();
+            updateURLParameter('brand', brand);
+        });
+
+        $('#search-form').on('submit', function(e) {
+            e.preventDefault();
+            let search = $('#search-input').val();
+            updateURLParameter('search', search);
+            // Manually append category and brand to the form action URL
+            let category = $('#category-select').val();
+            let brand = $('#brand-select').val();
+            let formAction = $(this).attr('action');
+            let url = formAction + '?search=' + encodeURIComponent(search) + '&category=' + encodeURIComponent(category) + '&brand=' + encodeURIComponent(brand);
+            window.location.href = url;
+        });
+    });
+</script>
