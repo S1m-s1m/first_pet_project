@@ -1,0 +1,20 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}"><button>Выйти</button></a>
+    {% else %}
+        it is main page
+        <p><h2>Welcome</h2></p>
+        <a href="{% url 'register' %}"><button>Зарегистрироваться</button></a>
+        <a href="{% url 'logon' %}"><button>Войти</button></a>
+    {% endif %}
+
+</body>
+</html>

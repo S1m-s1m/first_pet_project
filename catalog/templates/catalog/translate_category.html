@@ -1,0 +1,52 @@
+{% extends 'catalog/catalog_view.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="col-12 text-center">
+    <h2>{% trans 'Translate category' %}</h2>
+    <hr class="my-4" style="background-color: black;">
+</div>
+<div class="container mt-5">
+
+    <div class="row">
+        <div class="col-12">
+            <p><a href="{% url 'catalog:catalog_view' %}" class="btn btn-secondary">{% trans 'Back' %}</a></p>
+        </div>
+    </div>
+
+    <div class="row">
+        {% get_current_language as LANGUAGE_CODE %}
+        {% get_available_languages as LANGUAGES %}
+        {% get_language_info_list for LANGUAGES as languages %}
+
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <p><strong>{% trans "Language" %}:</strong></p>
+                <ul class="list-inline">
+                    {% for language in languages %}
+                        <li class="list-inline-item">
+                            <a href="/{{ language.code }}/catalog/translate_category/{{ object.pk }}/" {% if language.code == LANGUAGE_CODE %} class="selected"{% endif %}>
+                                <button class="btn btn-outline-primary">{{ language.name_local }}</button>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form method="post" class="p-4" style="background-color: transparent;">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">{% trans 'save' %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+</div>
+{% endblock content %}

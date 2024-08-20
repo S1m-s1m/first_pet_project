@@ -1,0 +1,54 @@
+{% load i18n %}
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'catalog:create_brand' %}">{% trans 'Add brand' %}</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'catalog:create_category' %}">{% trans 'Add category' %}</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'catalog:brand_list' %}">{% trans 'Brands' %}</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'catalog:create_product' %}">{% trans 'Add product' %}</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'cart:cart_detail' %}">{% trans 'My cart' %}</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'order:order_history' %}">{% trans 'My orders' %}</a>
+        </li>
+
+        <li class="nav-item">
+          <form method="get" action="{% url 'catalog:catalog_view' %}" class="d-flex align-items-center">
+            <select name="category" class="form-select" onchange="this.form.submit()">
+              <option value="">{% trans 'Select a category' %}</option>
+              {% for category in categories %}
+                <option value="{{ category.slug }}">
+                    {{ category.name }}
+                </option>
+              {% endfor %}
+            </select>
+          </form>
+        </li>
+
+      </ul>
+
+      <form method="get" action="{% url 'catalog:catalog_view' %}" class="d-flex" role="search">
+          <input type='search' name='search' class="form-control me-2" placeholder="{% trans 'Search' %}" aria-label="Search">
+          <button type="submit" class="btn btn-outline-success">{% trans "Search" %}</button>
+      </form>
+
+    </div>
+  </div>
+</nav>

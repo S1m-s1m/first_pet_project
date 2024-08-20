@@ -1,0 +1,12 @@
+{% extends 'catalog/catalog_view.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data" class="p-4" style="background-color: transparent;">
+    {% csrf_token %}
+    <p> {% trans 'Are you sure you want to delete review' %} '{{ object.text }}' from the user {{object.author}} ? </p>
+    <button type="submit" class="btn btn-danger">{% trans 'Yes' %}</button>
+    <a href="{% url 'catalog:product_detail' pk=object.product.pk slug=object.product.slug  %}"><button class="btn btn-secondary">{% trans 'No' %}</button></a>
+</form>
+{% endblock content %}
