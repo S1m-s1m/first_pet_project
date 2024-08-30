@@ -50,7 +50,7 @@ nltk==3.8.1
 numpy==2.0.1
 packaging==24.1
 pandas==2.2.2
--e git+https://github.com/S1m-s1m/first_pet_project.git@9f142667b5ec738c4bd5c35d70845f8854047b8c#egg=pet_project
+-e git+https://github.com/S1m-s1m/first_pet_project.git#egg=pet_project
 pexpect==4.9.0
 pillow==10.4.0
 pkginfo==1.11.1
