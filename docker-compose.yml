@@ -1,0 +1,70 @@
+version: '3.9'
+
+services:
+  django:
+    # Сборка образа для сервиса django из текущей директории
+    build: .
+    # Задание имени контейнера для сервиса django
+    container_name: django
+    # Задание команды, которую нужно запустить при запуске контейнера для сервиса django
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/usr/src/app
+    # Открытие порта на хостовой машине и перенаправление на порт в контейнере
+    ports:
+      - 8000:8000
+    # Зависимость от другого сервиса
+    depends_on:
+      - pgdb
+      - redis
+
+  pgdb:
+    # Использование готового образа postgres
+    image: postgres:15
+    # Задание переменных окружения для контейнера с postgres
+    environment:
+      - POSTGRES_DB=online_shop
+      - POSTGRES_USER=shop_owner
+      - POSTGRES_PASSWORD=store_password
+    # Задание имени контейнера для сервиса pgdb
+    container_name: pgdb
+    # Связывание тома с директорией в контейнере для сохранения данных postgres
+    volumes:
+      - pgdbdata:/var/lib/postgresql/data/
+
+  redis:
+    # Использование готового образа redis
+    image: redis:7
+    # Задание имени контейнера для сервиса redis
+    container_name: redis
+
+  celery:
+    # Сборка образа для сервиса celery из текущей директории
+    build: .
+    # Задание имени контейнера для сервиса celery
+    container_name: celery
+    # Задание команды, которую нужно запустить при запуске контейнера для сервиса celery
+    command: celery -A pet_project worker --loglevel=info
+    volumes:
+      - .:/usr/src/app
+    # Зависимость от других сервисов
+    depends_on:
+      - pgdb
+      - redis
+
+  celery-beat:
+    # Сборка образа для сервиса celery-beat из текущей директории
+    build: .
+    # Задание имени контейнера для сервиса celery-beat
+    container_name: celery-beat
+    # Задание команды, которую нужно запустить при запуске контейнера для сервиса celery-beat
+    command: celery -A pet_project beat --loglevel=info
+    volumes:
+      - .:/usr/src/app
+    # Зависимость от других сервисов
+    depends_on:
+      - pgdb
+      - redis
+
+volumes:
+  pgdbdata:

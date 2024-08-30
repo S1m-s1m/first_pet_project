@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-mc9grg_heu12t^!s3f=-4*q#v+9c)364$&fff*9@9+3!_vdr3i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
 
 
 # Application definition
@@ -109,18 +109,6 @@ DATABASES = {
         },
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'online_shop',
-#         'USER': 'shop_owner',
-#         'PASSWORD': 'shop_password',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
