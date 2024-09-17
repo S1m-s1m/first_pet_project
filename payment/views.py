@@ -41,7 +41,6 @@ def payment_process(request):
                 'quantity': item.quantity,
             })
 
-            # купон Stripe
         if order.coupon:
             stripe_coupon = stripe.Coupon.create(
                 name=order.coupon.code,
@@ -51,10 +50,7 @@ def payment_process(request):
                 'coupon': stripe_coupon.id
             }]
 
-        # создать сеанс оформления платежа Stripe
         session = stripe.checkout.Session.create(**session_data)
-        # перенаправить к платежной форме Stripe
-        # return redirect(session.url, code=303)
         return redirect(session.url)
     else:
         return render(request, 'payment/process.html', locals())# locals - context с парами ключ=значение

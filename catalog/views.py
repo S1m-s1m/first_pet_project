@@ -47,10 +47,10 @@ class Product_Catalog(View):
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 
-        query_params = request.GET.copy()# Копируем аргументы из строки в виде словаря {'category':'trousers', 'brand':'gucci', 'page': 2, ...}
+        query_params = request.GET.copy()
         if 'page' in query_params:
-            del query_params['page']# удаляем чтобы построить запрос с теми же аргументами но с другой страницей если пользователь нажмет на кнопку пагинации
-        query_string = urlencode(query_params) #строим url из словаря
+            del query_params['page']
+        query_string = urlencode(query_params)
 
         context = {'categories': categories, 'brands': brands, 'objects': objects, 'page_obj': page_obj, 'query_string': query_string}
         return render(request, 'catalog/catalog_view.html', context)
@@ -68,7 +68,7 @@ class Product_Detail(View):
             recommended_products = r.suggest_products_for([product], 4)
             context = {'object': product, 'cart_form': cart_form, 'review_form': review_form, 'reviews': reviews, 'category': category, 'recommended_products': recommended_products}
             return render(request, 'catalog/product_detail.html', context)
-        except Product.DoesNotExist:# pylint: disable=no-member
+        except Product.DoesNotExist:
             error = _('There is no such product')
             return render(request, 'catalog/error_page.html', {'error': error})
 
@@ -105,29 +105,6 @@ class Delete_Review(View):
         except Review.DoesNotExist:
             error = _('There is no such review')
             return render(request, 'catalog/error_page.html', {'error': error})
-
-'''
-При входящем запросе к представлению Create_Product,
-Django вызывает метод dispatch.
-
-Декоратор user_passes_test(is_admin) проверяет, 
-что текущий пользователь удовлетворяет функции is_admin, 
-которая определяет административные права.
-
-Если пользователь проходит проверку, метод dispatch 
-продолжает выполнение, вызывая метод post (в случае POST запроса) 
-или get (в случае GET запроса).
-
-Если пользователь не проходит проверку, ему может быть 
-отказано в доступе с соответствующим сообщением или перенаправлением.
-
-Почему именно метод dispatch  а не например post? Потому-что 
-dispatch обрабатывает все входящие запросы, применение 
-декоратора к этому методу гарантирует, что проверка прав 
-доступа (в вашем случае is_admin) будет выполняться перед 
-вызовом любого другого метода (например, get, post). 
-Это обеспечивает единообразие проверок безопасности для всего представления.
-'''
 
 @method_decorator(user_passes_test(is_admin), name='dispatch')
 class Create_Product(View):
@@ -239,7 +216,7 @@ class Create_Brand(View):
     def post(self, request):
         form = BrandForm(request.POST, request.FILES)
         if form.is_valid():
-            object = form.save(commit=False)#создает запись не сохраняя ее в бд позволяя изменять ее
+            object = form.save(commit=False)
             translation_slug = transliterate_slugify(form.cleaned_data['name'])
             if not translation_slug:
                 slug = slugify(form.cleaned_data['name'])
@@ -301,8 +278,6 @@ class Update_Brand(View):
                 else:
                     brand.slug = translation_slug
 
-                #brand.save()
-
                 return redirect('catalog:update_brand', pk=brand.pk)
             else:
                 return render(request, 'catalog/update_brand.html', {'form': form, 'object': brand})
@@ -352,7 +327,7 @@ class Create_Category(View):
     def post(self, request):
         form = CategoryForm(request.POST)
         if form.is_valid():
-            object = form.save(commit=False)#создает запись не сохраняя ее в бд позволяя изменять ее
+            object = form.save(commit=False)
             translation_slug = transliterate_slugify(form.cleaned_data['name'])
             if not translation_slug:
                 slug = slugify(form.cleaned_data['name'])

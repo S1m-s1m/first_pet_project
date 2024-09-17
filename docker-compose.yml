@@ -1,70 +1,285 @@
+# version: '3.8'
+
+# services:
+#   django:
+#     build: .
+#     container_name: django
+#     command: python manage.py runserver 0.0.0.0:8000
+#     volumes:
+#       - .:/usr/src/app
+#     ports:
+#       - "8000:8000"
+#     depends_on:
+#       - pgdb
+#       - redis
+
+#   pgdb:
+#     image: postgres:15
+#     environment:
+#       POSTGRES_DB: online_shop
+#       POSTGRES_USER: shop_owner
+#       POSTGRES_PASSWORD: store_password
+#     container_name: pgdb
+#     volumes:
+#       - pgdbdata:/var/lib/postgresql/data/
+
+#   redis:
+#     image: redis:7
+#     container_name: redis
+
+#   celery:
+#     build: .
+#     container_name: celery
+#     command: celery -A pet_project worker --loglevel=info
+#     volumes:
+#       - .:/usr/src/app
+#     depends_on:
+#       - pgdb
+#       - redis
+
+#   celery-beat:
+#     build: .
+#     container_name: celery-beat
+#     command: celery -A pet_project beat --loglevel=info
+#     volumes:
+#       - .:/usr/src/app
+#     depends_on:
+#       - pgdb
+#       - redis
+
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: nginx
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf
+  #   ports:
+  #     - "80:80"
+  #   depends_on:
+  #     - django
+
+  # ngrok:
+  #   image: wernight/ngrok
+  #   container_name: ngrok
+  #   volumes:
+  #     - ./ngrok.yml:/etc/ngrok.yml
+  #   command: ngrok start --all --config /etc/ngrok.yml
+  #   ports:
+  #     - "4042:4040"
+
+# volumes:
+#   pgdbdata:
+
+#docker run -it -e NGROK_AUTHTOKEN=2lOQLRNJ9nz1OFsS4J1heReqT85_aeioeD4nkWZAAAwsFveT ngrok/ngrok:alpine http 80
+#docker run -it -v $(pwd)/ngrok.yml:/etc/ngrok.yml -e NGROK_CONFIG=/etc/ngrok.yml ngrok/ngrok:alpine http 80
+
+
+# version: '3.9'
+
+# volumes:
+#   pgdbdata: {}
+#   redis_data: {}
+
+# services:
+#   django:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     container_name: django
+#     command: python manage.py runserver 0.0.0.0:8000
+#     volumes:
+#       - .:/usr/src/app
+#     ports:
+#       - "8000:8000"
+#     depends_on:
+#       - pgdb
+#       - redis
+#     environment:
+#       - STRIPE_PUBLISHABLE_KEY='pk_test_51PLAVyDo5uaPJl4sZnu2nfKjDPjFQqgc24tfaMw4JnE0QsaVxRJ7tWiaUKpnFduAPfQbJpzr7Mge1d2wkNocl1hU00YSQk285H'
+#       - STRIPE_SECRET_KEY='sk_test_51PLAVyDo5uaPJl4svwhpMCwmcRdLWVQjKmNm8ddxkxBh1ZrJtMDXqeQDpmeuuU2QPrONZurEjF6V3djGWlsT6mjc00pIB7NZLp'
+#       - DJSTRIPE_TEST_WEBHOOK_SECRET='whsec_KzYJyda8cJe61FKMB9dVGDo8340Ab27z'
+#       - DJSTRIPE_TEST_DB_VENDOR=postgres
+#       - DJSTRIPE_TEST_DB_PORT=5432
+#       - DJSTRIPE_TEST_DB_USER=shop_owner
+#       - DJSTRIPE_TEST_DB_NAME=online_shop
+#       - DJSTRIPE_TEST_DB_PASS=store_password
+#       - DJSTRIPE_TEST_DB_HOST=pgdb
+
+#   pgdb:
+#     image: postgres:15
+#     container_name: pgdb
+#     environment:
+#       POSTGRES_DB: online_shop
+#       POSTGRES_USER: shop_owner
+#       POSTGRES_PASSWORD: store_password
+#     volumes:
+#       - pgdbdata:/var/lib/postgresql/data/
+
+#   redis:
+#     image: redis:7
+#     container_name: redis
+#     volumes:
+#       - redis_data:/data
+#     command: redis-server --appendonly yes
+
+#   celery:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     container_name: celery
+#     command: celery -A pet_project worker --loglevel=info
+#     environment:
+#       - CELERY_BROKER_URL=redis://redis:6379/0
+#     volumes:
+#       - .:/usr/src/app
+#     depends_on:
+#       - pgdb
+#       - redis
+
+#   celery-beat:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     container_name: celery-beat
+#     command: celery -A pet_project beat --loglevel=info
+#     environment:
+#       - CELERY_BROKER_URL=redis://redis:6379/0
+#     volumes:
+#       - .:/usr/src/app
+#     depends_on:
+#       - pgdb
+#       - redis
+
+#   nginx:
+#     image: nginx:alpine
+#     container_name: nginx
+#     volumes:
+#       - ./nginx.conf:/etc/nginx/nginx.conf
+#     ports:
+#       - "80:80"
+#     depends_on:
+#       - django
+
+#   stripe:
+#     image: stripe/stripe-cli:v1.7.4
+#     container_name: stripe
+#     command: ["listen", "-H", "x-djstripe-webhook-secret: whsec_KzYJyda8cJe61FKMB9dVGDo8340Ab27z", "--forward-to", "http://django:8000/djstripe/webhook/"]
+#     depends_on:
+#       - django
+#     environment:
+#       - STRIPE_API_KEY='sk_test_51PLAVyDo5uaPJl4svwhpMCwmcRdLWVQjKmNm8ddxkxBh1ZrJtMDXqeQDpmeuuU2QPrONZurEjF6V3djGWlsT6mjc00pIB7NZLp'
+
+# networks:
+#   default:
+#     driver: bridge
+
 version: '3.9'
+
+volumes:
+  pgdbdata: {}
+  redis_data: {}
 
 services:
   django:
-    # Сборка образа для сервиса django из текущей директории
-    build: .
-    # Задание имени контейнера для сервиса django
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: django
-    # Задание команды, которую нужно запустить при запуске контейнера для сервиса django
-    command: python manage.py runserver 0.0.0.0:8000
+    #command: sh -c "openssl s_client -starttls smtp -connect 2007kim.maksim@gmail.com:587 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > /certificates.pem && python manage.py runserver 0.0.0.0:8000"
+    command: gunicorn pet_project.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - .:/usr/src/app
-    # Открытие порта на хостовой машине и перенаправление на порт в контейнере
     ports:
-      - 8000:8000
-    # Зависимость от другого сервиса
+      - "8000:8000"
     depends_on:
       - pgdb
       - redis
+    environment:
+      - STRIPE_PUBLISHABLE_KEY='pk_test_51PLAVyDo5uaPJl4sZnu2nfKjDPjFQqgc24tfaMw4JnE0QsaVxRJ7tWiaUKpnFduAPfQbJpzr7Mge1d2wkNocl1hU00YSQk285H'
+      - STRIPE_SECRET_KEY='sk_test_51PLAVyDo5uaPJl4svwhpMCwmcRdLWVQjKmNm8ddxkxBh1ZrJtMDXqeQDpmeuuU2QPrONZurEjF6V3djGWlsT6mjc00pIB7NZLp'
+      - DJSTRIPE_TEST_WEBHOOK_SECRET='whsec_KzYJyda8cJe61FKMB9dVGDo8340Ab27z'
+      - DJSTRIPE_TEST_DB_VENDOR=postgres
+      - DJSTRIPE_TEST_DB_PORT=5432
+      - DJSTRIPE_TEST_DB_USER=shop_owner
+      - DJSTRIPE_TEST_DB_NAME=online_shop
+      - DJSTRIPE_TEST_DB_PASS=store_password
+      - DJSTRIPE_TEST_DB_HOST=pgdb
+    networks:
+      - webnet
 
   pgdb:
-    # Использование готового образа postgres
     image: postgres:15
-    # Задание переменных окружения для контейнера с postgres
-    environment:
-      - POSTGRES_DB=online_shop
-      - POSTGRES_USER=shop_owner
-      - POSTGRES_PASSWORD=store_password
-    # Задание имени контейнера для сервиса pgdb
     container_name: pgdb
-    # Связывание тома с директорией в контейнере для сохранения данных postgres
+    environment:
+      POSTGRES_DB: online_shop
+      POSTGRES_USER: shop_owner
+      POSTGRES_PASSWORD: store_password
     volumes:
       - pgdbdata:/var/lib/postgresql/data/
 
   redis:
-    # Использование готового образа redis
     image: redis:7
-    # Задание имени контейнера для сервиса redis
     container_name: redis
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
 
   celery:
-    # Сборка образа для сервиса celery из текущей директории
-    build: .
-    # Задание имени контейнера для сервиса celery
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: celery
-    # Задание команды, которую нужно запустить при запуске контейнера для сервиса celery
-    command: celery -A pet_project worker --loglevel=info
+    command: celery -A pet_project worker --loglevel=info -P eventlet
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
     volumes:
       - .:/usr/src/app
-    # Зависимость от других сервисов
     depends_on:
       - pgdb
       - redis
 
   celery-beat:
-    # Сборка образа для сервиса celery-beat из текущей директории
-    build: .
-    # Задание имени контейнера для сервиса celery-beat
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: celery-beat
-    # Задание команды, которую нужно запустить при запуске контейнера для сервиса celery-beat
-    command: celery -A pet_project beat --loglevel=info
+    command: celery -A pet_project worker --loglevel=info -P eventlet
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
     volumes:
       - .:/usr/src/app
-    # Зависимость от других сервисов
     depends_on:
       - pgdb
       - redis
 
-volumes:
-  pgdbdata:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - django
+    networks:
+      - webnet
+
+networks:
+  webnet:
+    driver: bridge
+
+  # stripe:
+  #   image: stripe/stripe-cli:v1.7.4
+  #   container_name: stripe
+  #   command: ["listen", "--forward-to", "http://django:8000/payment/webhook/"]
+  #   environment:
+  #     - STRIPE_API_KEY=sk_test_...
+  #   depends_on:
+  #     - django
+
+
+
+
+
+
+
+

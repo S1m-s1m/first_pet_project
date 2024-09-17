@@ -1,8 +1,9 @@
+{% load static %}
 {% load i18n %}
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
   <div class="container-fluid">
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'cart:cart_detail' %}">{% trans 'My cart' %}</a>
@@ -28,6 +29,7 @@
     </div>
   </div>
 </nav>
+
 
 {% if request.resolver_match.view_name == 'catalog:catalog_view' %}
 <div class="container-fluid mt-2">
@@ -60,42 +62,115 @@
     </div>
   </div>
 {% endif %}
-
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function() {
-        function updateURLParameter(param, value) {
-            let searchParams = new URLSearchParams(window.location.search);
-            if (value) {
-                searchParams.set(param, value);
-            } else {
-                searchParams.delete(param);
-            }
-            history.replaceState(null, '', '?' + searchParams.toString());
-        }
+  $(document).ready(function() {
+      function updateURLParameter(param, value) {
+          let searchParams = new URLSearchParams(window.location.search);
+          if (value) {
+              searchParams.set(param, value);
+          } else {
+              searchParams.delete(param);
+          }
+          history.replaceState(null, '', '?' + searchParams.toString());
+      }
 
-        $('#category-select').on('change', function() {
-            let category = $(this).val();
-            updateURLParameter('category', category);
-        });
+      $('#category-select').on('change', function() {
+          let category = $(this).val();
+          updateURLParameter('category', category);
+      });
 
-        $('#brand-select').on('change', function() {
-            let brand = $(this).val();
-            updateURLParameter('brand', brand);
-        });
+      $('#brand-select').on('change', function() {
+          let brand = $(this).val();
+          updateURLParameter('brand', brand);
+      });
 
-        $('#search-form').on('submit', function(e) {
-            e.preventDefault();
-            let search = $('#search-input').val();
-            updateURLParameter('search', search);
-            // Manually append category and brand to the form action URL
-            let category = $('#category-select').val();
-            let brand = $('#brand-select').val();
-            let formAction = $(this).attr('action');
-            let url = formAction + '?search=' + encodeURIComponent(search) + '&category=' + encodeURIComponent(category) + '&brand=' + encodeURIComponent(brand);
-            window.location.href = url;
-        });
-    });
+      $('#search-form').on('submit', function(e) {
+          e.preventDefault();
+          let search = $('#search-input').val();
+          updateURLParameter('search', search);
+          let category = $('#category-select').val();
+          let brand = $('#brand-select').val();
+          let formAction = $(this).attr('action');
+          let url = formAction + '?search=' + encodeURIComponent(search) + '&category=' + encodeURIComponent(category) + '&brand=' + encodeURIComponent(brand);
+          window.location.href = url;
+      });
+  });
 </script>
+
+<style>
+
+  .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background-color: #343a40; 
+      overflow: hidden; 
+  }
+
+  .navbar-collapse {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+  }
+
+  .navbar-nav {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+  }
+
+  .nav-item {
+      margin-right: 15px;
+  }
+
+  @media (max-width: 992px) {
+      .navbar-nav {
+        justify-content: center;
+        gap: 10px;
+
+      }
+      .nav-item {
+          margin: 1px 0;
+      }
+
+      .nav-link {
+          padding: 3px 6px; 
+          font-size: 0.95rem; 
+          color: white;
+      }
+
+  @media (max-width: 768px) {
+    .navbar-nav {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .nav-link {
+        padding: 3px 6px;
+        font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+      .navbar-nav {
+          justify-content: center;
+          gap: 10px;
+      }
+
+      .nav-link {
+          padding: 0.5px 1px;
+          font-size: 0.8rem;
+      }
+  }
+  }
+</style>
+
+
+
+
+ 

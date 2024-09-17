@@ -8,7 +8,6 @@ class BrandForm(TranslatableModelForm):
     class Meta:
         model = Brand
         fields = ('name', 'description', 'image')
-        # fields = '__all__'
 
 class CategoryForm(TranslatableModelForm):
     class Meta:

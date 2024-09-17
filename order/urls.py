@@ -1,6 +1,7 @@
 from django.urls import path, re_path
 from order.views import Create_Order, Order_Detail, Order_History, admin_order_detail, admin_order_pdf
 
+
 app_name = 'order'
 
 urlpatterns = [

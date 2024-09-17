@@ -4,17 +4,17 @@
 
 {% block content %}
 
+<div class="row">
+    <div class="col-12">
+        <p><a href="{% url 'catalog:catalog_view' %}" class="btn btn-secondary">{% trans 'Back' %}</a></p>
+    </div>
+</div>
+
 <div class="col-12 text-center">
     <h2>{% trans 'Create brand' %}</h2>
     <hr class="my-4" style="background-color: black;">
 </div>
 <div class="container mt-5">
-
-    <div class="row">
-        <div class="col-12">
-            <p><a href="{% url 'catalog:catalog_view' %}" class="btn btn-secondary">{% trans 'Back' %}</a></p>
-        </div>
-    </div>
 
     {% get_current_language as LANGUAGE_CODE %}
     {% get_available_languages as LANGUAGES %}
@@ -47,4 +47,57 @@
         </div>
     </div>
 </div>
+
+<style>
+
+    .btn {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    @media (max-width: 768px) {
+        .btn {
+            font-size: 0.8rem;
+            padding: 8px 16px;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+        }
+
+        .p-4 {
+            padding: 1rem;
+        }
+        
+        ul.list-inline {
+            padding: 0;
+            text-align: center;
+        }
+
+        ul.list-inline li {
+            margin-bottom: 5px;
+        }
+
+        ul.list-inline li .btn {
+            width: 100%; 
+        }
+    }
+
+    @media (max-width: 576px) {
+        .btn {
+            font-size: 0.7rem;
+            padding: 6px 12px;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+        }
+
+        .p-4 {
+            padding: 0.5rem;
+        }
+    }
+</style>
+
 {% endblock content %}
+

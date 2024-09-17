@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-mc9grg_heu12t^!s3f=-4*q#v+9c)364$&fff*9@9+3!_vdr3i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
-
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'tunnel1-tunnelinuser489.p.tnnl.in', '0.0.0.0']
+CSRF_TRUSTED_ORIGINS = ['https://tunnel1-tunnelinuser489.p.tnnl.in']
 
 # Application definition
 
@@ -85,24 +85,14 @@ WSGI_APPLICATION = 'pet_project.wsgi.application'
 
 load_dotenv()
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'online_store',
-#         'USER': 'shop_owner',
-#         'PASSWORD': 'store_password',
-#         'HOST': 'localhost',
-#         'PORT': '5432'
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get('DB_NAME'),
         'USER': os.environ.get('DB_USER'),
         'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
+        'HOST': 'localhost',
+        #'HOST': os.environ.get('DB_HOST'),
         'PORT': '5432',
         'TEST': {
             'NAME': 'test_online_shop',
@@ -146,10 +136,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'catalog/static')
-# ]
-
 STATIC_ROOT = BASE_DIR / 'static'
 
 STATICFILES_DIRS = [
@@ -174,29 +160,23 @@ AUTH_USER_MODEL = 'main_app.User'
 
 CART_SESSION_ID = 'cart'
 
-CELERY_BROKER_URL = 'redis://localhost:6379/0'  # URL Redis для брокера сообщений
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  # URL Redis для хранения результатов задач
+CELERY_BROKER_URL = 'redis://localhost:6379/0'  
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+#CELERY_BROKER_URL = 'redis://redis:6379/0'  # URL Redis для брокера сообщений
+#CELERY_RESULT_BACKEND = 'redis://redis:6379/0'  # URL Redis для хранения результатов задач
 CELERY_ACCEPT_CONTENT = ['application/json']  # Форматы контента, которые Celery может принимать
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
-CELERY_STORE_ERRORS_EVEN_IF_IGNORED = True
-CELERY_TASK_ALWAYS_EAGER = True
 
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = os.environ.get('EMAIL_HOST'),
-# EMAIL_PORT = os.environ.get('EMAIL_PORT'),
-# EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS'),
-# EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER'),
-# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = '2007kim.maksim@gmail.com'
-EMAIL_HOST_PASSWORD = 'ebcoeoqabvkzdprt'
-EMAIL_PORT = 587
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_PORT = int(os.environ.get('EMAIL_PORT', 587))
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS') == 'True'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 REDIS_HOST = 'localhost'
+#REDIS_HOST = 'redis'
 REDIS_PORT = 6379
 REDIS_DB = 1
 
@@ -228,10 +208,8 @@ PARLER_LANGUAGES = {
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51PLAVyDo5uaPJl4sZnu2nfKjDPjFQqgc24tfaMw4JnE0QsaVxRJ7tWiaUKpnFduAPfQbJpzr7Mge1d2wkNocl1hU00YSQk285H'
 STRIPE_SECRET_KEY = 'sk_test_51PLAVyDo5uaPJl4svwhpMCwmcRdLWVQjKmNm8ddxkxBh1ZrJtMDXqeQDpmeuuU2QPrONZurEjF6V3djGWlsT6mjc00pIB7NZLp'
 STRIPE_API_VERSION = '2024-04-10'
-# STRIPE_API_VERSION = '2022-08-01'
-# STRIPE_WEBHOOK_SECRET = 'whsec_13cd44143fc8bb61ae9f21b48ae61b975ebf30d8eec5cf49a9d407144d74d27b'
+#STRIPE_WEBHOOK_SECRET = 'whsec_KzYJyda8cJe61FKMB9dVGDo8340Ab27z'
 STRIPE_WEBHOOK_SECRET = 'whsec_13cd44143fc8bb61ae9f21b48ae61b975ebf30d8eec5cf49a9d407144d74d27b'
-
 
 
 #set PATH=%PATH%;%SystemRoot%\system32;C:\Users\Максим\Downloads\gettext\bin
@@ -254,21 +232,23 @@ STRIPE_WEBHOOK_SECRET = 'whsec_13cd44143fc8bb61ae9f21b48ae61b975ebf30d8eec5cf49a
 # как были внесены или изменены переводы,
 # чтобы обновить бинарные файлы перевода.
 
+
+# python -m weasyprint https://weasyprint.org weasyprint.pdf
+
+
 # celery -A pet_project worker -l info --pool=eventlet
 # celery -A pet_project worker --loglevel=info -P eventlet
-# celery -A pet_project worker --loglevel=info
 
-'''
-cd stripe_1.19.5_windows_i1386
-stripe listen --forward-to 127.0.0.1:8000/payment/webhook/
-это и есть endpoint но лишь в среде разработки
 
-алгоритм работы вебхука при обработке событий Stripe:
-1. **Отправка события**: Когда происходит событие в системе Stripe (например, успешная оплата или создание подписки), Stripe отправляет POST-запрос на URL вашего вебхука.
-2. **Получение запроса**: Ваш веб-сервер Django принимает этот POST-запрос на URL, указанный для вебхука.
-3. **Проверка подписи**: В вашем представлении вебхука сначала проверяется подпись с использованием секретного ключа, который вы установили в настройках Stripe. Это обеспечивает безопасность передаваемых данных, гарантируя, что запросы действительно отправлены Stripe и не были изменены по пути.
-4. **Получение данных события**: После проверки подписи ваше приложение извлекает данные события из тела запроса. Эти данные включают в себя тип события и связанные с ним дополнительные данные, такие как идентификатор платежа или информация о заказе.
-5. **Обработка события**: На основе типа события ваше приложение выполняет определенные действия. Например, если событие - успешная оплата, то ваше приложение может пометить заказ как оплаченный в базе данных или отправить уведомление покупателю.
-6. **Возвращение ответа**: После успешной обработки события ваше приложение должно вернуть HTTP-ответ с кодом статуса 200 (ОК). Это сообщает Stripe, что событие было успешно обработано. Если ваше приложение вернет любой другой код статуса (например, 400 или 500), Stripe будет пытаться повторить запрос впоследствии.
-7. **Логирование и обработка ошибок**: Во время обработки событий важно логировать действия вашего приложения и обрабатывать любые ошибки, которые могут возникнуть. Это помогает в отслеживании процесса обработки и устранении проблем.
-'''
+# cd stripe_1.19.5_windows_i1386
+# stripe listen --forward-to 127.0.0.1:8000/payment/webhook/
+# это и есть endpoint но лишь в среде разработки
+
+# алгоритм работы вебхука при обработке событий Stripe:
+# 1. **Отправка события**: Когда происходит событие в системе Stripe (например, успешная оплата или создание подписки), Stripe отправляет POST-запрос на URL вашего вебхука.
+# 2. **Получение запроса**: Ваш веб-сервер Django принимает этот POST-запрос на URL, указанный для вебхука.
+# 3. **Проверка подписи**: В вашем представлении вебхука сначала проверяется подпись с использованием секретного ключа, который вы установили в настройках Stripe. Это обеспечивает безопасность передаваемых данных, гарантируя, что запросы действительно отправлены Stripe и не были изменены по пути.
+# 4. **Получение данных события**: После проверки подписи ваше приложение извлекает данные события из тела запроса. Эти данные включают в себя тип события и связанные с ним дополнительные данные, такие как идентификатор платежа или информация о заказе.
+# 5. **Обработка события**: На основе типа события ваше приложение выполняет определенные действия. Например, если событие - успешная оплата, то ваше приложение может пометить заказ как оплаченный в базе данных или отправить уведомление покупателю.
+# 6. **Возвращение ответа**: После успешной обработки события ваше приложение должно вернуть HTTP-ответ с кодом статуса 200 (ОК). Это сообщает Stripe, что событие было успешно обработано. Если ваше приложение вернет любой другой код статуса (например, 400 или 500), Stripe будет пытаться повторить запрос впоследствии.
+# 7. **Логирование и обработка ошибок**: Во время обработки событий важно логировать действия вашего приложения и обрабатывать любые ошибки, которые могут возникнуть. Это помогает в отслеживании процесса обработки и устранении проблем.

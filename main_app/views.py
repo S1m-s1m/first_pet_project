@@ -7,11 +7,6 @@ from django.contrib.auth.decorators import user_passes_test
 
 # Create your views here.
 
-'''интернет магазин с обработкой задач через селери, модeли: User, Products, Orders
-реализация корзины, комментариев, тесты, поисковой строки, пайплайн'''
-
-'''добавить профиль и возможность его изменения'''
-
 def is_authenticated(user):
     return user.is_authenticated
 
@@ -44,9 +39,7 @@ def login_view(request):
             if user:
                 login(request, user)
                 return redirect('main_app:main')
-            # else:# не нужно так как authenticate при не нахождении пользователя определит форму не валидной
-            #     form.add_error(None, 'User was not found')
-            else:# нужно т.к мы используем обычную форму а не AuthenticationForm
+            else:
                 form.add_error(None, _('User was not found'))
                 return render(request, 'main_app/login_form.html', {'form': form, 'form_name': _('Authentication form')})
         else:

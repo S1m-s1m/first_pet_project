@@ -18,16 +18,6 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf.urls.i18n import i18n_patterns
 
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-#     path(r'', include("main_app.urls", namespace='main_app')),
-#     path('catalog/', include("catalog.urls", namespace='catalog')),
-#     path('cart/', include("cart.urls", namespace='cart')),
-#     path('order/', include("order.urls", namespace='order')),
-#     path('coupon/', include('coupon.urls', namespace='coupon')),
-#     path('rosetta/', include('rosetta.urls')),
-# ]
-
 urlpatterns = i18n_patterns(
     re_path(r'^admin/', admin.site.urls),
     re_path(r'^', include("main_app.urls", namespace='main_app')),

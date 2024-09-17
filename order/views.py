@@ -1,6 +1,3 @@
-import os
-
-os.add_dll_directory(r"C:\Program Files (x86)\gtk-3.8.1")
 import weasyprint
 from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponse
@@ -33,7 +30,6 @@ class Create_Order(View):
             if form.is_valid():
                 order = form.save(commit=False)
                 order.user = request.user
-                # order = form.save(commit=False)
                 if cart.coupon:
                     order.coupon = cart.coupon
                     order.discount = cart.coupon.discount
@@ -46,18 +42,10 @@ class Create_Order(View):
                 # очистка корзины
                 cart.clear()
 
-                # Update Redis with purchased products
                 r = Recommender()
                 products_in_order = [item['product'] for item in cart]
                 r.products_bought(products_in_order)
-
-                # order_detail.delay(order.pk)
-                # order_created.delay(order.pk)
-
                 request.session['order_pk'] = order.pk
-                # order_cost = order.total_order_cost()
-                # перенаправить к платежу
-                # return redirect(reverse('payment:process'))
                 return render(request, 'payment/process.html', {'order': order})
         else:
             error = _('Yor cart is empty')
@@ -90,4 +78,3 @@ def admin_order_pdf(request, pk):
     stylesheets=[weasyprint.CSS(settings.STATIC_ROOT / 'order/css/pdf.css')]
     weasyprint.HTML(string=html).write_pdf(response,stylesheets=stylesheets)
     return response
-

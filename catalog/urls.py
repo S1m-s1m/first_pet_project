@@ -10,7 +10,6 @@ app_name = 'catalog'
 urlpatterns = [
     path('', Product_Catalog.as_view(), name='catalog_view'),
     path('delete_review/<int:pk>/', Delete_Review.as_view(), name='delete_review'),
-    # path('category/<str:slug>/', Product_Catalog.as_view(), name='catalog_view'),
     path('create_product/', Create_Product.as_view(), name='create_product'),
     path('detail_product/<int:pk>/<str:slug>/', Product_Detail.as_view(), name='product_detail'),
     path('update_product/<int:pk>/', Update_Product.as_view(), name='update_product'),

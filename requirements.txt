@@ -10,6 +10,7 @@ celery==5.4.0
 certifi==2024.7.4
 cffi==1.16.0
 charset-normalizer==3.3.2
+Choco==1.0.5
 cleo==2.1.0
 click==8.1.7
 click-didyoumean==0.3.1
@@ -21,6 +22,7 @@ cssselect2==0.7.0
 dill==0.3.8
 distlib==0.3.8
 Django==5.0.7
+django-cors-headers==4.4.0
 django-parler==2.3
 django-rosetta==0.10.0
 djangorestframework==3.15.2
@@ -32,7 +34,9 @@ Faker==12.0.1
 fastjsonschema==2.20.0
 filelock==3.15.4
 fonttools==4.53.1
+gevent==24.2.1
 greenlet==3.0.3
+gunicorn==23.0.0
 html5lib==1.1
 idna==3.7
 iniconfig==2.0.0
@@ -42,6 +46,7 @@ jaraco.classes==3.4.0
 joblib==1.4.2
 keyring==24.3.1
 kombu==5.3.7
+MarkupSafe==2.1.5
 mccabe==0.7.0
 mixer==7.2.2
 more-itertools==10.3.0
@@ -50,9 +55,10 @@ nltk==3.8.1
 numpy==2.0.1
 packaging==24.1
 pandas==2.2.2
--e git+https://github.com/S1m-s1m/first_pet_project.git#egg=pet_project
+-e git+https://github.com/S1m-s1m/first_pet_project.git@9f142667b5ec738c4bd5c35d70845f8854047b8c#egg=pet_project
 pexpect==4.9.0
 pillow==10.4.0
+pipdeptree==2.23.1
 pkginfo==1.11.1
 platformdirs==4.2.2
 pluggy==1.5.0
@@ -85,7 +91,7 @@ requests==2.32.3
 requests-toolbelt==1.0.0
 rosetta==0.3
 scipy==1.14.0
-setuptools==71.1.0
+setuptools==74.1.2
 shellingham==1.5.4
 six==1.16.0
 sqlparse==0.5.1
@@ -104,4 +110,6 @@ virtualenv==20.26.3
 wcwidth==0.2.13
 weasyprint==62.3
 webencodings==0.5.1
+zope.event==5.0
+zope.interface==7.0.3
 zopfli==0.2.3

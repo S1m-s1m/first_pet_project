@@ -2,8 +2,6 @@ from django.urls import path
 from payment.views import payment_canceled, payment_completed, payment_process
 from payment.webhooks import stripe_webhook
 
-# from payment.webhooks import stripe_webhook
-
 app_name = 'payment'
 
 urlpatterns = [
