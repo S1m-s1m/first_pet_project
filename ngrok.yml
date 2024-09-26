@@ -1,8 +1,0 @@
-version: "2"
-authtoken: 2lOQLRNJ9nz1OFsS4J1heReqT85_aeioeD4nkWZAAAwsFveT
-tunnels:
-  web:
-    proto: http
-    addr: 8000
-
-#ssh -R example.serveo.net: 80:localhost:8000 serveo.net  
