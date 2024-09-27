@@ -171,8 +171,10 @@ CART_SESSION_ID = 'cart'
 
 #CELERY_BROKER_URL = 'redis://localhost:6379/0'  
 #CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
-CELERY_BROKER_URL = 'redis://redis:6379/0'  # URL Redis для брокера сообщений
-CELERY_RESULT_BACKEND = 'redis://redis:6379/0'  # URL Redis для хранения результатов задач
+# CELERY_BROKER_URL = 'redis://redis:6379/0'  # URL Redis для брокера сообщений
+# CELERY_RESULT_BACKEND = 'redis://redis:6379/0'  # URL Redis для хранения результатов задач
+CELERY_BROKER_URL = os.environ.get('REDIS_URL')  # URL Redis для брокера сообщений
+CELERY_RESULT_BACKEND = os.environ.get('REDIS_URL')
 CELERY_ACCEPT_CONTENT = ['application/json']  # Форматы контента, которые Celery может принимать
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
