@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 from django.utils.translation import gettext_lazy as _
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,10 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-mc9grg_heu12t^!s3f=-4*q#v+9c)364$&fff*9@9+3!_vdr3i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'tunnel1-tunnelinuser489.p.tnnl.in', '0.0.0.0']
-ALLOWED_HOSTS = ['first-pet-project.onrender.com', 'tunnel1-tunnelinuser489.p.tnnl.in']
+ALLOWED_HOSTS = ["first-pet-project.onrender.com", "tunnel1-tunnelinuser489.p.tnnl.in", "0.0.0.0"]
 CSRF_TRUSTED_ORIGINS = ['https://tunnel1-tunnelinuser489.p.tnnl.in']
 
 # Application definition
@@ -86,18 +87,25 @@ WSGI_APPLICATION = 'pet_project.wsgi.application'
 
 load_dotenv()
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.environ.get('DB_NAME'),
+#         'USER': os.environ.get('DB_USER'),
+#         'PASSWORD': os.environ.get('DB_PASSWORD'),
+#         'HOST': 'localhost',
+#         #'HOST': os.environ.get('DB_HOST'),
+#         'PORT': '5432',
+#         'TEST': {
+#             'NAME': 'test_online_shop',
+#         },
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': 'localhost',
-        #'HOST': os.environ.get('DB_HOST'),
-        'PORT': '5432',
-        'TEST': {
-            'NAME': 'test_online_shop',
-        },
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL')),
+    'TEST': {
+        'NAME': 'test_online_shop',
     }
 }
 
