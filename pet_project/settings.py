@@ -169,10 +169,10 @@ AUTH_USER_MODEL = 'main_app.User'
 
 CART_SESSION_ID = 'cart'
 
-CELERY_BROKER_URL = 'redis://localhost:6379/0'  
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
-#CELERY_BROKER_URL = 'redis://redis:6379/0'  # URL Redis для брокера сообщений
-#CELERY_RESULT_BACKEND = 'redis://redis:6379/0'  # URL Redis для хранения результатов задач
+#CELERY_BROKER_URL = 'redis://localhost:6379/0'  
+#CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = 'redis://redis:6379/0'  # URL Redis для брокера сообщений
+CELERY_RESULT_BACKEND = 'redis://redis:6379/0'  # URL Redis для хранения результатов задач
 CELERY_ACCEPT_CONTENT = ['application/json']  # Форматы контента, которые Celery может принимать
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
@@ -184,8 +184,8 @@ EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS') == 'True'
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
-REDIS_HOST = 'localhost'
-#REDIS_HOST = 'redis'
+#REDIS_HOST = 'localhost'
+REDIS_HOST = 'redis'
 REDIS_PORT = 6379
 REDIS_DB = 1
 
@@ -217,8 +217,8 @@ PARLER_LANGUAGES = {
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51PLAVyDo5uaPJl4sZnu2nfKjDPjFQqgc24tfaMw4JnE0QsaVxRJ7tWiaUKpnFduAPfQbJpzr7Mge1d2wkNocl1hU00YSQk285H'
 STRIPE_SECRET_KEY = 'sk_test_51PLAVyDo5uaPJl4svwhpMCwmcRdLWVQjKmNm8ddxkxBh1ZrJtMDXqeQDpmeuuU2QPrONZurEjF6V3djGWlsT6mjc00pIB7NZLp'
 STRIPE_API_VERSION = '2024-04-10'
-#STRIPE_WEBHOOK_SECRET = 'whsec_KzYJyda8cJe61FKMB9dVGDo8340Ab27z'
-STRIPE_WEBHOOK_SECRET = 'whsec_13cd44143fc8bb61ae9f21b48ae61b975ebf30d8eec5cf49a9d407144d74d27b'
+STRIPE_WEBHOOK_SECRET = 'whsec_KzYJyda8cJe61FKMB9dVGDo8340Ab27z'
+#STRIPE_WEBHOOK_SECRET = 'whsec_13cd44143fc8bb61ae9f21b48ae61b975ebf30d8eec5cf49a9d407144d74d27b'
 
 
 #set PATH=%PATH%;%SystemRoot%\system32;C:\Users\Максим\Downloads\gettext\bin
@@ -249,7 +249,7 @@ STRIPE_WEBHOOK_SECRET = 'whsec_13cd44143fc8bb61ae9f21b48ae61b975ebf30d8eec5cf49a
 # celery -A pet_project worker --loglevel=info -P eventlet
 
 
-# cd stripe_1.19.5_windows_i1386
+# cd stripe_1.21.0_windows_x86_64
 # stripe listen --forward-to 127.0.0.1:8000/payment/webhook/
 # это и есть endpoint но лишь в среде разработки
 
