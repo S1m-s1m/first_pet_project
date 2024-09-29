@@ -1,9 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-from catalog.views import Create_Brand, Product_Catalog, Update_Product, Update_Brand, \
-    Brand_List, Brand_Detail, Delete_Product, Delete_Brand, Product_Detail, Create_Category, Delete_Category, \
-    Create_Product, Translate_Category, Delete_Review
+from catalog.views import *
 
 app_name = 'catalog'
 
@@ -24,6 +22,9 @@ urlpatterns = [
     path('create_category/', Create_Category.as_view(), name='create_category'),
     path('delete_category/<int:pk>/', Delete_Category.as_view(), name='delete_category'),
     path('translate_category/<int:pk>/', Translate_Category.as_view(), name='translate_category'),
+
+    path('test/', test_view, name='test')
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
