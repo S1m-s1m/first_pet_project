@@ -428,5 +428,5 @@ class Translate_Category(View):
 
 def test_view(request):
     task = test_task.delay()
-    return HttpResponse(task.id)
+    return HttpResponse(task)
     # return redirect('catalog:catalog_view')
