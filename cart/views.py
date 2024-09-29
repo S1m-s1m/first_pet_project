@@ -8,7 +8,6 @@ from catalog.models import Product
 from catalog.recommender import Recommender
 from coupon.forms import CouponApplyForm
 
-
 # Create your views here.
 
 @require_POST

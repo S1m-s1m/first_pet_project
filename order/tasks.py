@@ -6,9 +6,14 @@ from django.template.loader import render_to_string
 from pet_project import settings
 from .models import Order
 import logging
-import datetime
+import time
 
 logger = logging.getLogger(__name__)
+
+@shared_task(name='test_task')
+def test_task():
+    time.sleep(10)
+    return 'task performed'
 
 @shared_task(name='payment_completed')
 def payment_completed(order_id):

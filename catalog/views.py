@@ -15,6 +15,8 @@ from django.utils.text import slugify
 from catalog.recommender import Recommender
 from django.contrib.auth.decorators import user_passes_test
 from django.utils.decorators import method_decorator
+from order.tasks import test_task
+from django.urls import reverse
 
 # Create your views here.
 
@@ -420,3 +422,7 @@ class Translate_Category(View):
             return render(request, 'catalog/error_page.html', {'error': error})
         except Exception as error:
             return render(request, 'catalog/error_page.html', {'error': error})
+
+def test_view(request):
+    test_task.delay()
+    return reverse('catalog:catalog_view')
