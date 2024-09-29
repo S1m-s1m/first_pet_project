@@ -173,8 +173,8 @@ CART_SESSION_ID = 'cart'
 #CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 # CELERY_BROKER_URL = 'redis://redis:6379/0'  # URL Redis для брокера сообщений
 # CELERY_RESULT_BACKEND = 'redis://redis:6379/0'  # URL Redis для хранения результатов задач
-# CELERY_BROKER_URL = os.environ.get('REDIS_URL')  # URL Redis для брокера сообщений
-# CELERY_RESULT_BACKEND = os.environ.get('REDIS_URL')
+CELERY_BROKER_URL = os.environ.get('REDIS_URL')  # URL Redis для брокера сообщений
+CELERY_RESULT_BACKEND = os.environ.get('REDIS_URL')
 CELERY_BROKER_URL = "redis://red-crrgv9dumphs73b9l700:6379"  # URL Redis для брокера сообщений
 CELERY_RESULT_BACKEND = "redis://red-crrgv9dumphs73b9l700:6379"
 CELERY_ACCEPT_CONTENT = ['application/json']  # Форматы контента, которые Celery может принимать
@@ -189,7 +189,8 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 #REDIS_HOST = 'localhost'
-REDIS_HOST = 'redis'
+# REDIS_HOST = 'redis'
+REDIS = 'red-crrgv9dumphs73b9l700'
 REDIS_PORT = 6379
 REDIS_DB = 1
 

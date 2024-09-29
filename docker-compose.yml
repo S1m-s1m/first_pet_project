@@ -1,3 +1,105 @@
+# version: '3.9'
+
+# volumes:
+#   pgdbdata: {}
+#   redis_data: {}
+
+# networks:
+#   webnet:
+
+# services:
+#   django:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     container_name: django
+#     command: gunicorn pet_project.wsgi:application --bind 0.0.0.0:8000
+#     volumes:
+#       - .:/usr/src/app
+#     ports:
+#       - "8000:8000"
+#     depends_on:
+#       - pgdb
+#       - redis
+#     environment:
+#       - STRIPE_PUBLISHABLE_KEY='pk_test_51PLAVyDo5uaPJl4sZnu2nfKjDPjFQqgc24tfaMw4JnE0QsaVxRJ7tWiaUKpnFduAPfQbJpzr7Mge1d2wkNocl1hU00YSQk285H'
+#       - STRIPE_SECRET_KEY='sk_test_51PLAVyDo5uaPJl4svwhpMCwmcRdLWVQjKmNm8ddxkxBh1ZrJtMDXqeQDpmeuuU2QPrONZurEjF6V3djGWlsT6mjc00pIB7NZLp'
+#       - DJSTRIPE_TEST_WEBHOOK_SECRET='whsec_KzYJyda8cJe61FKMB9dVGDo8340Ab27z'
+#       - DJSTRIPE_TEST_DB_VENDOR=postgres
+#       - DJSTRIPE_TEST_DB_PORT=5432
+#       - DJSTRIPE_TEST_DB_USER=shop_owner
+#       - DJSTRIPE_TEST_DB_NAME=online_shop
+#       - DJSTRIPE_TEST_DB_PASS=store_password
+#       - DJSTRIPE_TEST_DB_HOST=pgdb
+#     networks:
+#       - webnet
+
+#   pgdb:
+#     image: postgres:15
+#     container_name: pgdb
+#     environment:
+#       POSTGRES_DB: online_shop
+#       POSTGRES_USER: shop_owner
+#       POSTGRES_PASSWORD: store_password
+#     volumes:
+#       - pgdbdata:/var/lib/postgresql/data/
+#     networks:
+#       - webnet
+
+#   redis:
+#     image: redis:7
+#     container_name: redis
+#     volumes:
+#       - redis_data:/data
+#     command: redis-server --appendonly yes
+#     networks:
+#       - webnet
+
+#   celery:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     container_name: celery
+#     command: celery -A pet_project worker --loglevel=info -P eventlet
+#     environment:
+#       - CELERY_BROKER_URL=redis://red-crrgv9dumphs73b9l700:6379
+#     volumes:
+#       - .:/usr/src/app
+#     depends_on:
+#       - pgdb
+#       - redis
+#     networks:
+#       - webnet
+
+#   celery-beat:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     container_name: celery-beat
+#     command: celery -A pet_project worker --loglevel=info -P eventlet
+#     environment:
+#       - CELERY_BROKER_URL=redis://red-crrgv9dumphs73b9l700:6379
+#     volumes:
+#       - .:/usr/src/app
+#     depends_on:
+#       - pgdb
+#       - redis
+#     networks:
+#       - webnet
+
+#   nginx:
+#     image: nginx:latest
+#     container_name: nginx
+#     ports:
+#       - "80:80"
+#     volumes:
+#       - ./nginx.conf:/etc/nginx/nginx.conf
+#     depends_on:
+#       - django
+#     networks:
+#       - webnet
+
+
 version: '3.9'
 
 volumes:
@@ -17,20 +119,12 @@ services:
     volumes:
       - .:/usr/src/app
     ports:
-      - "8000:8000"
+      - "8000:8000"  # В dev/prod можно пробросить только на Nginx
     depends_on:
       - pgdb
       - redis
-    environment:
-      - STRIPE_PUBLISHABLE_KEY='pk_test_51PLAVyDo5uaPJl4sZnu2nfKjDPjFQqgc24tfaMw4JnE0QsaVxRJ7tWiaUKpnFduAPfQbJpzr7Mge1d2wkNocl1hU00YSQk285H'
-      - STRIPE_SECRET_KEY='sk_test_51PLAVyDo5uaPJl4svwhpMCwmcRdLWVQjKmNm8ddxkxBh1ZrJtMDXqeQDpmeuuU2QPrONZurEjF6V3djGWlsT6mjc00pIB7NZLp'
-      - DJSTRIPE_TEST_WEBHOOK_SECRET='whsec_KzYJyda8cJe61FKMB9dVGDo8340Ab27z'
-      - DJSTRIPE_TEST_DB_VENDOR=postgres
-      - DJSTRIPE_TEST_DB_PORT=5432
-      - DJSTRIPE_TEST_DB_USER=shop_owner
-      - DJSTRIPE_TEST_DB_NAME=online_shop
-      - DJSTRIPE_TEST_DB_PASS=store_password
-      - DJSTRIPE_TEST_DB_HOST=pgdb
+    env_file:
+      - .env  # Вынести переменные в .env файл
     networks:
       - webnet
 
@@ -61,8 +155,8 @@ services:
       dockerfile: Dockerfile
     container_name: celery
     command: celery -A pet_project worker --loglevel=info -P eventlet
-    environment:
-      - CELERY_BROKER_URL=redis://red-crrgv9dumphs73b9l700:6379
+    env_file:
+      - .env
     volumes:
       - .:/usr/src/app
     depends_on:
@@ -76,9 +170,9 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: celery-beat
-    command: celery -A pet_project worker --loglevel=info -P eventlet
-    environment:
-      - CELERY_BROKER_URL=redis://red-crrgv9dumphs73b9l700:6379
+    command: celery -A pet_project beat --loglevel=info  # beat отличается от worker
+    env_file:
+      - .env
     volumes:
       - .:/usr/src/app
     depends_on:
@@ -98,8 +192,6 @@ services:
       - django
     networks:
       - webnet
-
-
 
 
 
