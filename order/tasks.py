@@ -12,6 +12,7 @@ logger = logging.getLogger(__name__)
 
 @shared_task(name='test_task')
 def test_task():
+    logger.info("celery is working")
     time.sleep(10)
     return 'task performed'
 

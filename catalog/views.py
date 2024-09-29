@@ -18,6 +18,8 @@ from django.utils.decorators import method_decorator
 from order.tasks import test_task
 from django.urls import reverse
 from django.shortcuts import render
+from django.http import HttpResponse
+
 
 # Create your views here.
 
@@ -425,5 +427,6 @@ class Translate_Category(View):
             return render(request, 'catalog/error_page.html', {'error': error})
 
 def test_view(request):
-    test_task.delay()
-    return redirect('catalog:catalog_view')
+    task = test_task.delay()
+    return HttpResponse(task.id)
+    # return redirect('catalog:catalog_view')

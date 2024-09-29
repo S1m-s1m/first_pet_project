@@ -191,6 +191,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 #REDIS_HOST = 'localhost'
 # REDIS_HOST = 'redis'
 REDIS_HOST = 'red-crrgv9dumphs73b9l700'
+REDIS_URL = 'redis://red-crrgv9dumphs73b9l700:6379'
 REDIS_PORT = 6379
 REDIS_DB = 1
 
