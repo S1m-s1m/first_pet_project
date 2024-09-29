@@ -17,6 +17,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.utils.decorators import method_decorator
 from order.tasks import test_task
 from django.urls import reverse
+from django.shortcuts import render
 
 # Create your views here.
 
@@ -425,4 +426,4 @@ class Translate_Category(View):
 
 def test_view(request):
     test_task.delay()
-    return reverse('catalog:catalog_view')
+    return redirect('catalog:catalog_view')
