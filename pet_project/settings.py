@@ -227,7 +227,6 @@ STRIPE_WEBHOOK_SECRET = 'whsec_o4MTEkPB8tYpojzDIz8Llk7X47dOG4iw'
 #STRIPE_WEBHOOK_SECRET = 'whsec_KzYJyda8cJe61FKMB9dVGDo8340Ab27z'
 #STRIPE_WEBHOOK_SECRET = 'whsec_13cd44143fc8bb61ae9f21b48ae61b975ebf30d8eec5cf49a9d407144d74d27b'
 
-
 #set PATH=%PATH%;%SystemRoot%\system32;C:\Users\Максим\Downloads\gettext\bin
 
 # django-admin makemessages --all внесение слов

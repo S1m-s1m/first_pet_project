@@ -37,3 +37,6 @@ def payment_completed(order_id):
     email.attach(f'order_{order.pk}.pdf',out.getvalue(),'application/pdf')
     # отправить электронное письмо
     email.send()
+
+    email = EmailMessage(subject='Good day', body='It is a second test message', from_email='2007kim.maksim@gmail.com', to=['2007kim.maksim@gmail.com'])
+    email.send()
