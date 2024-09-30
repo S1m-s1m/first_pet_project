@@ -27,8 +27,8 @@ SECRET_KEY = 'django-insecure-mc9grg_heu12t^!s3f=-4*q#v+9c)364$&fff*9@9+3!_vdr3i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'tunnel1-tunnelinuser489.p.tnnl.in', '0.0.0.0']
-#ALLOWED_HOSTS = ["first-pet-project-1.onrender.com", "tunnel1-tunnelinuser489.p.tnnl.in", 'localhost', '127.0.0.1', "0.0.0.0"]
+#ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'tunnel1-tunnelinuser489.p.tnnl.in', '0.0.0.0']
+ALLOWED_HOSTS = ["first-pet-project-1.onrender.com", "tunnel1-tunnelinuser489.p.tnnl.in", 'localhost', '127.0.0.1', "0.0.0.0"]
 CSRF_TRUSTED_ORIGINS = ['https://tunnel1-tunnelinuser489.p.tnnl.in']
 
 # Application definition
