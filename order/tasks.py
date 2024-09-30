@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 def test_task():
     logger.info("celery is working")
     time.sleep(10)
-    email = EmailMessage(subject='Good day', body='It is test message', from_email='2007kim.maksim@gmail.com', to='2007kim.maksim@gmail.com')
+    email = EmailMessage(subject='Good day', body='It is test message', from_email='2007kim.maksim@gmail.com', to=['2007kim.maksim@gmail.com'])
     email.send()
     return 'task performed'
 

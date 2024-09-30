@@ -27,8 +27,8 @@ SECRET_KEY = 'django-insecure-mc9grg_heu12t^!s3f=-4*q#v+9c)364$&fff*9@9+3!_vdr3i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'tunnel1-tunnelinuser489.p.tnnl.in', '0.0.0.0']
-ALLOWED_HOSTS = ["first-pet-project-1.onrender.com", "tunnel1-tunnelinuser489.p.tnnl.in", "0.0.0.0"]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'tunnel1-tunnelinuser489.p.tnnl.in', '0.0.0.0']
+#ALLOWED_HOSTS = ["first-pet-project-1.onrender.com", "tunnel1-tunnelinuser489.p.tnnl.in", 'localhost', '127.0.0.1', "0.0.0.0"]
 CSRF_TRUSTED_ORIGINS = ['https://tunnel1-tunnelinuser489.p.tnnl.in']
 
 # Application definition
@@ -93,8 +93,8 @@ load_dotenv()
 #         'NAME': os.environ.get('DB_NAME'),
 #         'USER': os.environ.get('DB_USER'),
 #         'PASSWORD': os.environ.get('DB_PASSWORD'),
-#         'HOST': 'localhost',
-#         #'HOST': os.environ.get('DB_HOST'),
+#         # 'HOST': 'localhost',
+#         'HOST': os.environ.get('DB_HOST'),
 #         'PORT': '5432',
 #         'TEST': {
 #             'NAME': 'test_online_shop',
@@ -154,7 +154,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'main_app', 'static'),
     os.path.join(BASE_DIR, 'payment', 'static'),
     os.path.join(BASE_DIR, 'cart', 'static'),
-    # Add more app directories as needed
 ]
 
 MEDIA_URL = '/media/'
@@ -175,8 +174,6 @@ CART_SESSION_ID = 'cart'
 # CELERY_RESULT_BACKEND = 'redis://redis:6379/0'  # URL Redis для хранения результатов задач
 CELERY_BROKER_URL = os.environ.get('REDIS_URL')  # URL Redis для брокера сообщений
 CELERY_RESULT_BACKEND = os.environ.get('REDIS_URL')
-CELERY_BROKER_URL = "redis://red-crrgv9dumphs73b9l700:6379"  # URL Redis для брокера сообщений
-CELERY_RESULT_BACKEND = "redis://red-crrgv9dumphs73b9l700:6379"
 CELERY_ACCEPT_CONTENT = ['application/json']  # Форматы контента, которые Celery может принимать
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
@@ -190,8 +187,11 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 #REDIS_HOST = 'localhost'
 # REDIS_HOST = 'redis'
+# REDIS_URL = 'redis://localhost:6379/0'
 REDIS_HOST = 'red-crrgv9dumphs73b9l700'
 REDIS_URL = 'redis://red-crrgv9dumphs73b9l700:6379'
+# REDIS_URL='rediss://red-crrgv9dumphs73b9l700:7SB8dAdbNJFL1XiFN0zU4qFgimCkCc4A@oregon-redis.render.com:6379/0?ssl_cert_reqs=CERT_REQUIRED'
+# REDIS_HOST='oregon-redis.render.com'
 REDIS_PORT = 6379
 REDIS_DB = 1
 
@@ -223,8 +223,8 @@ PARLER_LANGUAGES = {
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51PLAVyDo5uaPJl4sZnu2nfKjDPjFQqgc24tfaMw4JnE0QsaVxRJ7tWiaUKpnFduAPfQbJpzr7Mge1d2wkNocl1hU00YSQk285H'
 STRIPE_SECRET_KEY = 'sk_test_51PLAVyDo5uaPJl4svwhpMCwmcRdLWVQjKmNm8ddxkxBh1ZrJtMDXqeQDpmeuuU2QPrONZurEjF6V3djGWlsT6mjc00pIB7NZLp'
 STRIPE_API_VERSION = '2024-04-10'
-STRIPE_WEBHOOK_SECRET = 'whsec_o4MTEkPB8tYpojzDIz8Llk7X47dOG4iw'
-# STRIPE_WEBHOOK_SECRET = 'whsec_KzYJyda8cJe61FKMB9dVGDo8340Ab27z'
+# STRIPE_WEBHOOK_SECRET = 'whsec_o4MTEkPB8tYpojzDIz8Llk7X47dOG4iw'
+STRIPE_WEBHOOK_SECRET = 'whsec_KzYJyda8cJe61FKMB9dVGDo8340Ab27z'
 #STRIPE_WEBHOOK_SECRET = 'whsec_13cd44143fc8bb61ae9f21b48ae61b975ebf30d8eec5cf49a9d407144d74d27b'
 
 

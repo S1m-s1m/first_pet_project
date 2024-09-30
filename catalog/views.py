@@ -427,6 +427,6 @@ class Translate_Category(View):
             return render(request, 'catalog/error_page.html', {'error': error})
 
 def test_view(request):
-    task = test_task.delay()
-    return HttpResponse(task)
+    test_task.delay()
+    return HttpResponse(test_task())
     # return redirect('catalog:catalog_view')
