@@ -64,8 +64,8 @@ def stripe_webhook(request):
             order.save()# сохраняем
             # payment_completed.delay(order.pk)
             test_task.delay()
-            email = EmailMessage(subject='Good day', body='It is a test message', from_email='2007kim.maksim@gmail.com', to=['2007kim.maksim@gmail.com'])
-            email.send()
+            # email = EmailMessage(subject='Good day', body='It is a test message', from_email='2007kim.maksim@gmail.com', to=['2007kim.maksim@gmail.com'])
+            # email.send()
     return HttpResponse(status=200)
 
 
