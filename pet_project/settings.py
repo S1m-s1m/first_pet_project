@@ -29,7 +29,7 @@ DEBUG = True
 
 #ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'tunnel1-tunnelinuser489.p.tnnl.in', '0.0.0.0']
 ALLOWED_HOSTS = ["first-pet-project-1.onrender.com", "tunnel1-tunnelinuser489.p.tnnl.in", 'localhost', '127.0.0.1', "0.0.0.0"]
-CSRF_TRUSTED_ORIGINS = ['https://tunnel1-tunnelinuser489.p.tnnl.in']
+CSRF_TRUSTED_ORIGINS = ["https://tunnel1-tunnelinuser489.p.tnnl.in", "https://first-pet-project-1.onrender.com"]
 
 # Application definition
 
