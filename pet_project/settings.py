@@ -188,10 +188,10 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 #REDIS_HOST = 'localhost'
 # REDIS_HOST = 'redis'
 # REDIS_URL = 'redis://localhost:6379/0'
-REDIS_HOST = 'red-crrgv9dumphs73b9l700'
-REDIS_URL = 'redis://red-crrgv9dumphs73b9l700:6379'
-# REDIS_URL='rediss://red-crrgv9dumphs73b9l700:7SB8dAdbNJFL1XiFN0zU4qFgimCkCc4A@oregon-redis.render.com:6379/0?ssl_cert_reqs=CERT_REQUIRED'
-# REDIS_HOST='oregon-redis.render.com'
+# REDIS_HOST = 'red-crrgv9dumphs73b9l700'
+# REDIS_URL = 'redis://red-crrgv9dumphs73b9l700:6379'
+REDIS_URL='rediss://red-crrgv9dumphs73b9l700:7SB8dAdbNJFL1XiFN0zU4qFgimCkCc4A@oregon-redis.render.com:6379/0?ssl_cert_reqs=CERT_REQUIRED'
+REDIS_HOST='oregon-redis.render.com'
 REDIS_PORT = 6379
 REDIS_DB = 1
 
