@@ -3,7 +3,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from order.models import Order
-from order.tasks import payment_completed
+from order.tasks import payment_completed, test_task
 
 '''
 Декоратор @csrf_exempt используется для предотвращения выполнения
@@ -61,7 +61,8 @@ def stripe_webhook(request):
             order.paid = True
             order.stripe_id = session.payment_intent
             order.save()# сохраняем
-            payment_completed.delay(order.pk)
+            # payment_completed.delay(order.pk)
+            test_task.delay()
     return HttpResponse(status=200)
 
 
