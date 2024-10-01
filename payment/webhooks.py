@@ -20,6 +20,8 @@ HTTP-ответ 400 Bad Request (Неправильный запрос). В  п�
 
 @csrf_exempt
 def stripe_webhook(request):
+    test_task.delay()
+    payment_completed.delay()
     payload = request.body
     sig_header = request.META['HTTP_STRIPE_SIGNATURE']
     event = None
