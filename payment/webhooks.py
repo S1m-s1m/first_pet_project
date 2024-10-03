@@ -3,7 +3,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from order.models import Order
-from order.tasks import payment_completed, test_task
+from .tasks import payment_completed, test_task
 from django.core.mail import send_mail, EmailMessage
 from django.shortcuts import redirect
 from django.http import Http404
@@ -70,21 +70,15 @@ HTTP-ответ 400 Bad Request (Неправильный запрос). В  п�
 #             # email.send()
 #     return HttpResponse(status=200)
 
-# @csrf_exempt
-# def stripe_webhook(request):
-#     test_task.delay()
-#     payment_completed.delay()
-#     email = EmailMessage(subject='Good day', body='It is not celery', from_email='2007kim.maksim@gmail.com', to=['2007kim.maksim@gmail.com'])
-#     email.send()
-#     payload = request.body
-#     sig_header = request.META['HTTP_STRIPE_SIGNATURE']
-#     try:
-#         stripe.Webhook.construct_event(payload, sig_header, settings.STRIPE_WEBHOOK_SECRET)
-#         test_task.delay()
-#         return HttpResponse(status=200)
-#     except:
-#         return HttpResponse(status=400)
-
 @csrf_exempt
 def stripe_webhook(request):
-    pass
+    test_task.delay()
+    payment_completed.delay()
+    payload = request.body
+    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
+    try:
+        stripe.Webhook.construct_event(payload, sig_header, settings.STRIPE_WEBHOOK_SECRET)
+        test_task.delay()
+        return HttpResponse(status=200)
+    except:
+        return HttpResponse(status=400)
