@@ -70,19 +70,21 @@ HTTP-ответ 400 Bad Request (Неправильный запрос). В  п�
 #             # email.send()
 #     return HttpResponse(status=200)
 
+# @csrf_exempt
+# def stripe_webhook(request):
+#     test_task.delay()
+#     payment_completed.delay()
+#     email = EmailMessage(subject='Good day', body='It is not celery', from_email='2007kim.maksim@gmail.com', to=['2007kim.maksim@gmail.com'])
+#     email.send()
+#     payload = request.body
+#     sig_header = request.META['HTTP_STRIPE_SIGNATURE']
+#     try:
+#         stripe.Webhook.construct_event(payload, sig_header, settings.STRIPE_WEBHOOK_SECRET)
+#         test_task.delay()
+#         return HttpResponse(status=200)
+#     except:
+#         return HttpResponse(status=400)
 
 @csrf_exempt
 def stripe_webhook(request):
-    test_task.delay()
-    payment_completed.delay()
-    email = EmailMessage(subject='Good day', body='It is not celery', from_email='2007kim.maksim@gmail.com', to=['2007kim.maksim@gmail.com'])
-    email.send()
-    payload = request.body
-    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
-    try:
-        stripe.Webhook.construct_event(payload, sig_header, settings.STRIPE_WEBHOOK_SECRET)
-        test_task.delay()
-        return HttpResponse(status=200)
-    except:
-        return HttpResponse(status=400)
-
+    pass
