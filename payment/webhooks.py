@@ -5,6 +5,8 @@ from django.views.decorators.csrf import csrf_exempt
 from order.models import Order
 from order.tasks import payment_completed, test_task
 from django.core.mail import send_mail, EmailMessage
+from django.shortcuts import redirect
+from django.http import Http404
 
 '''
 Декоратор @csrf_exempt используется для предотвращения выполнения
@@ -80,6 +82,8 @@ def stripe_webhook(request):
         sig_header,
         settings.STRIPE_WEBHOOK_SECRET)
         test_task.delay()
-        return HttpResponse(status=200)
-    except stripe.error.SignatureVerificationError:
-        return HttpResponse(status=400)
+        # return HttpResponse(status=200)
+        return redirect("catalog:catalog_view")
+    except:
+        # return HttpResponse(status=400)
+        raise Http404("webhook does not work")
