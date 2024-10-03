@@ -63,3 +63,6 @@ def payment_completed(request):
 def payment_canceled(request):
     return render(request, 'payment/canceled.html')
 
+def test_view(request):
+    test_task.delay()
+    return HttpResponse(test_task())

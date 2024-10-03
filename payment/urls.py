@@ -9,4 +9,5 @@ urlpatterns = [
     path('completed/', payment_completed, name='completed'),
     path('canceled/', payment_canceled, name='canceled'),
     path('webhook/', stripe_webhook, name='stripe-webhook'),
+    path('test/', test_view, name='test')
 ]
