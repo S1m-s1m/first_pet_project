@@ -188,8 +188,8 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 #REDIS_HOST = 'localhost'
 # REDIS_HOST = 'redis'
 # REDIS_URL = 'redis://localhost:6379/0'
-REDIS_HOST = 'red-crrgv9dumphs73b9l700'
-REDIS_URL = 'redis://red-crrgv9dumphs73b9l700:6379'
+REDIS_HOST = os.environ.get('REDIS_HOST')
+REDIS_URL = os.environ.get('REDIS_URL')
 # REDIS_URL='rediss://red-crrgv9dumphs73b9l700:7SB8dAdbNJFL1XiFN0zU4qFgimCkCc4A@oregon-redis.render.com:6379/0?ssl_cert_reqs=CERT_REQUIRED'
 # REDIS_HOST='oregon-redis.render.com'
 REDIS_PORT = 6379
@@ -215,17 +215,18 @@ PARLER_LANGUAGES = {
     }
 }
 
-# STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY'),
-# STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY'),
-# STRIPE_API_VERSION = os.environ.get('STRIPE_API_VERSION'),
-# STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET'),
-
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51PLAVyDo5uaPJl4sZnu2nfKjDPjFQqgc24tfaMw4JnE0QsaVxRJ7tWiaUKpnFduAPfQbJpzr7Mge1d2wkNocl1hU00YSQk285H'
 STRIPE_SECRET_KEY = 'sk_test_51PLAVyDo5uaPJl4svwhpMCwmcRdLWVQjKmNm8ddxkxBh1ZrJtMDXqeQDpmeuuU2QPrONZurEjF6V3djGWlsT6mjc00pIB7NZLp'
 STRIPE_API_VERSION = '2024-04-10'
 STRIPE_WEBHOOK_SECRET = 'whsec_o4MTEkPB8tYpojzDIz8Llk7X47dOG4iw'
-#STRIPE_WEBHOOK_SECRET = 'whsec_KzYJyda8cJe61FKMB9dVGDo8340Ab27z'
+# STRIPE_WEBHOOK_SECRET = 'whsec_KzYJyda8cJe61FKMB9dVGDo8340Ab27z'
 #STRIPE_WEBHOOK_SECRET = 'whsec_13cd44143fc8bb61ae9f21b48ae61b975ebf30d8eec5cf49a9d407144d74d27b'
+
+# STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
+# STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+# STRIPE_API_VERSION = os.environ.get('STRIPE_API_VERSION')
+# STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET')
+
 
 #set PATH=%PATH%;%SystemRoot%\system32;C:\Users\Максим\Downloads\gettext\bin
 

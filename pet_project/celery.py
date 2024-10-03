@@ -14,6 +14,6 @@ app.conf.broker_connection_retry_on_startup = True
 # app.conf.result_backend = os.environ.get('REDIS_URL') 
 # app.conf.task_serializer = 'json'
 
-app.conf.broker_url = os.environ.get('REDIS_URL')  
-app.conf.result_backend = os.environ.get('REDIS_URL') 
+app.conf.broker_url = settings.CELERY_BROKER_URL
+app.conf.result_backend = settings.CELERY_RESULT_BACKEND
 
