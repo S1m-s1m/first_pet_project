@@ -4,6 +4,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
+from order.tasks import test_task
 
 from order.models import Order, Order_Item
 
@@ -56,6 +57,7 @@ def payment_process(request):
         return render(request, 'payment/process.html', locals())# locals - context с парами ключ=значение
 
 def payment_completed(request):
+    test_task.delay()
     return render(request, 'payment/completed.html')
 
 def payment_canceled(request):

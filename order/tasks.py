@@ -13,9 +13,14 @@ logger = logging.getLogger(__name__)
 @shared_task(name='test_task')
 def test_task():
     logger.info("celery is working")
-    email = EmailMessage(subject='Good day', body='It is a test message', from_email='2007kim.maksim@gmail.com', to=['2007kim.maksim@gmail.com'])
+    email = EmailMessage(subject='test task', body='test task', from_email='2007kim.maksim@gmail.com', to=['2007kim.maksim@gmail.com'])
     email.send()
     return 'task performed'
+
+@shared_task(name='payment_completed')
+def payment_completed():
+    email = EmailMessage(subject='payment completed', body='payment completed', from_email='2007kim.maksim@gmail.com', to=['2007kim.maksim@gmail.com'])
+    email.send()
 
 # @shared_task(name='payment_completed')
 # def payment_completed(order_id):
@@ -40,7 +45,3 @@ def test_task():
 #     email = EmailMessage(subject='Good day', body='It is a second test message', from_email='2007kim.maksim@gmail.com', to=['2007kim.maksim@gmail.com'])
 #     email.send()
 
-@shared_task(name='payment_completed')
-def payment_completed():
-    email = EmailMessage(subject='Good day', body='It is a second test message', from_email='2007kim.maksim@gmail.com', to=['2007kim.maksim@gmail.com'])
-    email.send()
