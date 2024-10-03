@@ -73,17 +73,16 @@ HTTP-ответ 400 Bad Request (Неправильный запрос). В  п�
 
 @csrf_exempt
 def stripe_webhook(request):
+    test_task.delay()
+    payment_completed.delay()
+    email = EmailMessage(subject='Good day', body='It is not celery', from_email='2007kim.maksim@gmail.com', to=['2007kim.maksim@gmail.com'])
+    email.send()
     payload = request.body
     sig_header = request.META['HTTP_STRIPE_SIGNATURE']
-    event = None
     try:
-        event = stripe.Webhook.construct_event(
-        payload,
-        sig_header,
-        settings.STRIPE_WEBHOOK_SECRET)
+        stripe.Webhook.construct_event(payload, sig_header, settings.STRIPE_WEBHOOK_SECRET)
         test_task.delay()
-        # return HttpResponse(status=200)
-        return redirect("catalog:catalog_view")
+        return HttpResponse(status=200)
     except:
-        # return HttpResponse(status=400)
-        raise Http404("webhook does not work")
+        return HttpResponse(status=400)
+
