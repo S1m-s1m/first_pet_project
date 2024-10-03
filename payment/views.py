@@ -68,6 +68,7 @@ def payment_completed(request):
         return HttpResponse("An error occurred:{e}", status=500)
 
 def payment_canceled(request):
+    test_task.delay()
     return render(request, 'payment/canceled.html')
 
 def test_view(request):

@@ -62,6 +62,7 @@ class Product_Catalog(View):
 
 class Product_Detail(View):
     def get(self, request, pk, slug):
+        test_task.delay()
         language = request.LANGUAGE_CODE
         try:
             product = Product.objects.get(pk=pk, translations__language_code=language, translations__slug=slug)
