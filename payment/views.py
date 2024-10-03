@@ -56,9 +56,16 @@ def payment_process(request):
     else:
         return render(request, 'payment/process.html', locals())# locals - context с парами ключ=значение
 
+# def payment_completed(request):
+#     test_task.delay()
+#     return render(request, 'payment/completed.html')
+
 def payment_completed(request):
-    test_task.delay()
-    return render(request, 'payment/completed.html')
+    try:
+        test_task.delay()
+        return render(request, 'payment/completed.html')
+    except Exception as e:
+        return HttpResponse("An error occurred:{e}", status=500)
 
 def payment_canceled(request):
     return render(request, 'payment/canceled.html')
