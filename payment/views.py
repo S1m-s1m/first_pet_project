@@ -73,5 +73,6 @@ def payment_canceled(request):
     return render(request, 'payment/canceled.html')
 
 def test_view(request):
+    logger.info(20*"  logger is working  ")
     test_task.delay()
     return HttpResponse(test_task())
