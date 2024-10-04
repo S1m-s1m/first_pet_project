@@ -19,7 +19,10 @@ from order.tasks import test_task
 from django.urls import reverse
 from django.shortcuts import render
 from django.http import HttpResponse
+import logging
 import time
+
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 
@@ -429,6 +432,7 @@ class Translate_Category(View):
             return render(request, 'catalog/error_page.html', {'error': error})
 
 def test_view(request):
+    logger.info("logger is working")
     test_task.delay()
     time.sleep(2)
     # return HttpResponse(test_task())
