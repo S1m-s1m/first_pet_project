@@ -432,7 +432,7 @@ class Translate_Category(View):
             return render(request, 'catalog/error_page.html', {'error': error})
 
 def test_view(request):
-    logger.info(20*"  logger is working  ")
+    logger.info("logger is working")
     test_task.delay()
     time.sleep(2)
     # return HttpResponse(test_task())

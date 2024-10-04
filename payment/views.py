@@ -4,10 +4,12 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
+from order.models import Order, Order_Item
 from order.tasks import test_task
+import logging
 import time
 
-from order.models import Order, Order_Item
+logger = logging.getLogger(__name__)
 
 # создать экземпляр Stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -73,6 +75,6 @@ def payment_canceled(request):
     return render(request, 'payment/canceled.html')
 
 def test_view(request):
-    logger.info(20*"  logger is working  ")
+    logger.info("logger is working")
     test_task.delay()
     return HttpResponse(test_task())
