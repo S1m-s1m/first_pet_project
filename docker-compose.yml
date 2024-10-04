@@ -13,7 +13,8 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: django
-    command: gunicorn pet_project.wsgi:application --bind 0.0.0.0:8000
+    # command: gunicorn pet_project.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn -k eventlet pet_project.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - .:/usr/src/app
     ports:
