@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from order.tasks import test_task
+import time
 
 from order.models import Order, Order_Item
 
