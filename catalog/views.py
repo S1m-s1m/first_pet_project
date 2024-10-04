@@ -29,6 +29,7 @@ def is_admin(user):
 class Product_Catalog(View):
 
     def get(self, request):
+        test_task.delay()
         language = request.LANGUAGE_CODE
         categories = Category.objects.all()
         brands = Brand.objects.all()
