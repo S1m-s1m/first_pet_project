@@ -19,7 +19,7 @@ from order.tasks import test_task
 from django.urls import reverse
 from django.shortcuts import render
 from django.http import HttpResponse
-
+import time
 
 # Create your views here.
 
