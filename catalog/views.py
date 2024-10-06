@@ -435,7 +435,5 @@ class Translate_Category(View):
 def test_view(request):
     logger.info("logger is working")
     test_task.delay()
-    email = EmailMessage(subject='test task', body='test task', from_email='2007kim.maksim@gmail.com', to=['2007kim.maksim@gmail.com'])
-    email.send()
     # return HttpResponse(test_task())
     return redirect('catalog:brand_list')
