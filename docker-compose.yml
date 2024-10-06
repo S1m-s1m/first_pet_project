@@ -13,8 +13,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: django
-    # command: gunicorn pet_project.wsgi:application --bind 0.0.0.0:8000
-    command: gunicorn -k eventlet pet_project.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn pet_project.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - .:/usr/src/app
     ports:
@@ -25,8 +24,8 @@ services:
     environment:
       - STRIPE_PUBLISHABLE_KEY='pk_test_51PLAVyDo5uaPJl4sZnu2nfKjDPjFQqgc24tfaMw4JnE0QsaVxRJ7tWiaUKpnFduAPfQbJpzr7Mge1d2wkNocl1hU00YSQk285H'
       - STRIPE_SECRET_KEY='sk_test_51PLAVyDo5uaPJl4svwhpMCwmcRdLWVQjKmNm8ddxkxBh1ZrJtMDXqeQDpmeuuU2QPrONZurEjF6V3djGWlsT6mjc00pIB7NZLp'
-      - STRIPE_WEBHOOK_SECRET='whsec_o4MTEkPB8tYpojzDIz8Llk7X47dOG4iw'
-      # - STRIPE_TEST_WEBHOOK_SECRET='whsec_KzYJyda8cJe61FKMB9dVGDo8340Ab27z'
+      #- STRIPE_WEBHOOK_SECRET='whsec_o4MTEkPB8tYpojzDIz8Llk7X47dOG4iw'
+      - STRIPE_TEST_WEBHOOK_SECRET='whsec_KzYJyda8cJe61FKMB9dVGDo8340Ab27z'
       # - DJSTRIPE_TEST_DB_VENDOR=postgres
       # - DJSTRIPE_TEST_DB_PORT=5432
       # - DJSTRIPE_TEST_DB_USER=shop_owner
@@ -39,10 +38,6 @@ services:
   pgdb:
     image: postgres:15
     container_name: pgdb
-    # environment:
-    #   POSTGRES_DB: online_shop
-    #   POSTGRES_USER: shop_owner
-    #   POSTGRES_PASSWORD: store_password
     volumes:
       - pgdbdata:/var/lib/postgresql/data/
     networks:
@@ -62,10 +57,10 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: celery
-    # command: celery -A pet_project worker --loglevel=info -P eventlet
-    command: celery -A pet_project worker --loglevel=info
+    command: celery -A pet_project worker --loglevel=info -P eventlet
+    # command: celery -A pet_project worker --loglevel=info
     # environment:
-      # - CELERY_BROKER_URL='redis://red-crrgv9dumphs73b9l700:6379'
+    #   - CELERY_BROKER_URL='redis://red-crrgv9dumphs73b9l700:6379'
     volumes:
       - .:/usr/src/app
     depends_on:
@@ -79,10 +74,10 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: celery-beat
-    # command: celery -A pet_project worker --loglevel=info -P eventlet
-    command: celery -A pet_project worker --loglevel=info
+    command: celery -A pet_project worker --loglevel=info -P eventlet
+    # command: celery -A pet_project worker --loglevel=info
     # environment:
-      # - CELERY_BROKER_URL='redis://red-crrgv9dumphs73b9l700:6379'
+    #   - CELERY_BROKER_URL='redis://red-crrgv9dumphs73b9l700:6379'
     volumes:
       - .:/usr/src/app
     depends_on:

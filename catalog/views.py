@@ -21,6 +21,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import logging
 import time
+from django.core.mail import send_mail, EmailMessage
 
 logger = logging.getLogger(__name__)
 
@@ -434,6 +435,7 @@ class Translate_Category(View):
 def test_view(request):
     logger.info("logger is working")
     test_task.delay()
-    time.sleep(2)
+    email = EmailMessage(subject='test task', body='test task', from_email='2007kim.maksim@gmail.com', to=['2007kim.maksim@gmail.com'])
+    email.send()
     # return HttpResponse(test_task())
     return redirect('catalog:brand_list')

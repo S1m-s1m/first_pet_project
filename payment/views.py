@@ -8,6 +8,7 @@ from order.models import Order, Order_Item
 from order.tasks import test_task
 import logging
 import time
+from django.core.mail import send_mail, EmailMessage
 
 logger = logging.getLogger(__name__)
 
@@ -77,4 +78,6 @@ def payment_canceled(request):
 def test_view(request):
     logger.info("logger is working")
     test_task.delay()
-    return HttpResponse(test_task())
+    email = EmailMessage(subject='test task', body='test task', from_email='2007kim.maksim@gmail.com', to=['2007kim.maksim@gmail.com'])
+    email.send()
+    return HttpResponse("payment test view")

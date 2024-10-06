@@ -169,8 +169,8 @@ AUTH_USER_MODEL = 'main_app.User'
 
 CART_SESSION_ID = 'cart'
 
-#CELERY_BROKER_URL = 'redis://localhost:6379/0'  
-#CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+# CELERY_BROKER_URL = 'redis://localhost:6379/0'  
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 # CELERY_BROKER_URL = 'redis://redis:6379/0'  # URL Redis для брокера сообщений
 # CELERY_RESULT_BACKEND = 'redis://redis:6379/0'  # URL Redis для хранения результатов задач
 CELERY_BROKER_URL = os.environ.get('REDIS_URL')  # URL Redis для брокера сообщений
@@ -178,26 +178,23 @@ CELERY_RESULT_BACKEND = os.environ.get('REDIS_URL')
 CELERY_ACCEPT_CONTENT = ['application/json']  # Форматы контента, которые Celery может принимать
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
-CELERYD_HIJACK_ROOT_LOGGER = False
-CELERYD_LOG_LEVEL = 'INFO'
 
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
         'console': {
+            'level': 'INFO',
             'class': 'logging.StreamHandler',
         },
     },
     'loggers': {
         'django': {
             'handlers': ['console'],
-            'level': 'DEBUG', 
-            'propagate': True,
+            'level': 'INFO',
         },
     },
 }
-
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.environ.get('EMAIL_HOST')
@@ -211,8 +208,6 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 # REDIS_URL = 'redis://localhost:6379/0'
 REDIS_HOST = os.environ.get('REDIS_HOST')
 REDIS_URL = os.environ.get('REDIS_URL')
-# REDIS_URL='rediss://red-crrgv9dumphs73b9l700:7SB8dAdbNJFL1XiFN0zU4qFgimCkCc4A@oregon-redis.render.com:6379/0?ssl_cert_reqs=CERT_REQUIRED'
-# REDIS_HOST='oregon-redis.render.com'
 REDIS_PORT = 6379
 REDIS_DB = 1
 
@@ -240,7 +235,7 @@ STRIPE_PUBLISHABLE_KEY = 'pk_test_51PLAVyDo5uaPJl4sZnu2nfKjDPjFQqgc24tfaMw4JnE0Q
 STRIPE_SECRET_KEY = 'sk_test_51PLAVyDo5uaPJl4svwhpMCwmcRdLWVQjKmNm8ddxkxBh1ZrJtMDXqeQDpmeuuU2QPrONZurEjF6V3djGWlsT6mjc00pIB7NZLp'
 STRIPE_API_VERSION = '2024-04-10'
 STRIPE_WEBHOOK_SECRET = 'whsec_o4MTEkPB8tYpojzDIz8Llk7X47dOG4iw'
-# STRIPE_WEBHOOK_SECRET = 'whsec_KzYJyda8cJe61FKMB9dVGDo8340Ab27z'
+#STRIPE_WEBHOOK_SECRET = 'whsec_KzYJyda8cJe61FKMB9dVGDo8340Ab27z'
 #STRIPE_WEBHOOK_SECRET = 'whsec_13cd44143fc8bb61ae9f21b48ae61b975ebf30d8eec5cf49a9d407144d74d27b'
 
 # STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
