@@ -78,6 +78,4 @@ def payment_canceled(request):
 def test_view(request):
     logger.info("logger is working")
     test_task.delay()
-    # email = EmailMessage(subject='test task', body='test task', from_email='2007kim.maksim@gmail.com', to=['2007kim.maksim@gmail.com'])
-    # email.send()
     return HttpResponse("payment test view")
