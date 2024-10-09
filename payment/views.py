@@ -5,10 +5,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from order.models import Order, Order_Item
-from order.tasks import test_task
 import logging
 import time
-from django.core.mail import send_mail, EmailMessage
 
 logger = logging.getLogger(__name__)
 
@@ -60,22 +58,9 @@ def payment_process(request):
     else:
         return render(request, 'payment/process.html', locals())# locals - context с парами ключ=значение
 
-# def payment_completed(request):
-#     test_task.delay()
-#     return render(request, 'payment/completed.html')
-
 def payment_completed(request):
-    try:
-        test_task.delay()
-        return render(request, 'payment/completed.html')
-    except Exception as e:
-        return HttpResponse("An error occurred:{e}", status=500)
+    return render(request, 'payment/completed.html')
 
 def payment_canceled(request):
-    test_task.delay()
     return render(request, 'payment/canceled.html')
 
-def test_view(request):
-    logger.info("logger is working")
-    test_task.delay()
-    return HttpResponse("payment test view")

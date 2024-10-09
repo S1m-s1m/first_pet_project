@@ -22,9 +22,6 @@ urlpatterns = [
     path('create_category/', Create_Category.as_view(), name='create_category'),
     path('delete_category/<int:pk>/', Delete_Category.as_view(), name='delete_category'),
     path('translate_category/<int:pk>/', Translate_Category.as_view(), name='translate_category'),
-
-    path('test/', test_view, name='test')
-
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

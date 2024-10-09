@@ -15,13 +15,11 @@ from django.utils.text import slugify
 from catalog.recommender import Recommender
 from django.contrib.auth.decorators import user_passes_test
 from django.utils.decorators import method_decorator
-from order.tasks import test_task
 from django.urls import reverse
 from django.shortcuts import render
 from django.http import HttpResponse
 import logging
 import time
-from django.core.mail import send_mail, EmailMessage
 
 logger = logging.getLogger(__name__)
 
@@ -33,7 +31,6 @@ def is_admin(user):
 class Product_Catalog(View):
 
     def get(self, request):
-        test_task.delay()
         language = request.LANGUAGE_CODE
         categories = Category.objects.all()
         brands = Brand.objects.all()
@@ -67,7 +64,6 @@ class Product_Catalog(View):
 
 class Product_Detail(View):
     def get(self, request, pk, slug):
-        test_task.delay()
         language = request.LANGUAGE_CODE
         try:
             product = Product.objects.get(pk=pk, translations__language_code=language, translations__slug=slug)
@@ -431,9 +427,3 @@ class Translate_Category(View):
             return render(request, 'catalog/error_page.html', {'error': error})
         except Exception as error:
             return render(request, 'catalog/error_page.html', {'error': error})
-
-def test_view(request):
-    logger.info("logger is working")
-    test_task.delay()
-    # return HttpResponse(test_task())
-    return redirect('catalog:brand_list')
