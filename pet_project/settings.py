@@ -209,7 +209,9 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 # REDIS_HOST = os.environ.get('REDIS_HOST')
 # REDIS_URL = os.environ.get('REDIS_URL')
 REDIS_HOST='redis.railway.internal'
-REDIS_URL='redis://default:zgCqQVLXnyDJhVYniEvQSHciSJDlJPsS@redis.railway.internal:6379'
+# REDIS_URL='redis://default:zgCqQVLXnyDJhVYniEvQSHciSJDlJPsS@redis.railway.internal:6379'
+REDIS_URL='redis://default:zgCqQVLXnyDJhVYniEvQSHciSJDlJPsS@redis.railway.internal:6379/1'
+
 REDIS_PORT = 6379
 REDIS_DB = 1
 
