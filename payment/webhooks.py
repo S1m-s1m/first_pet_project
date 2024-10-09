@@ -3,7 +3,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from order.models import Order
-from .tasks import payment_completed, test_task
+from order.tasks import payment_completed
 from django.core.mail import send_mail, EmailMessage
 from django.shortcuts import redirect
 from django.http import Http404
