@@ -30,8 +30,8 @@ DEBUG = True
 
 #ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'tunnel1-tunnelinuser489.p.tnnl.in', '0.0.0.0']
 # ALLOWED_HOSTS = ["first-pet-project-1.onrender.com", "tunnel1-tunnelinuser489.p.tnnl.in", 'localhost', '127.0.0.1', "0.0.0.0"]
-ALLOWED_HOSTS = ["first_pet_project.up.railway.app", "tunnel1-tunnelinuser489.p.tnnl.in", 'localhost', '127.0.0.1', "0.0.0.0"]
-CSRF_TRUSTED_ORIGINS = ["https://tunnel1-tunnelinuser489.p.tnnl.in", "https://first-pet-project-1.onrender.com", "https://first_pet_project.up.railway.app"]
+ALLOWED_HOSTS = ["firstpetproject-production.up.railway.app", "tunnel1-tunnelinuser489.p.tnnl.in", 'localhost', '127.0.0.1', "0.0.0.0"]
+CSRF_TRUSTED_ORIGINS = ["https://tunnel1-tunnelinuser489.p.tnnl.in", "https://first-pet-project-1.onrender.com", "https://firstpetproject-production.up.railway.app"]
 
 # Application definition
 INSTALLED_APPS = [
