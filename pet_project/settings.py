@@ -29,11 +29,11 @@ SECRET_KEY = 'django-insecure-mc9grg_heu12t^!s3f=-4*q#v+9c)364$&fff*9@9+3!_vdr3i
 DEBUG = True
 
 #ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'tunnel1-tunnelinuser489.p.tnnl.in', '0.0.0.0']
-ALLOWED_HOSTS = ["first-pet-project-1.onrender.com", "tunnel1-tunnelinuser489.p.tnnl.in", 'localhost', '127.0.0.1', "0.0.0.0"]
-CSRF_TRUSTED_ORIGINS = ["https://tunnel1-tunnelinuser489.p.tnnl.in", "https://first-pet-project-1.onrender.com"]
+# ALLOWED_HOSTS = ["first-pet-project-1.onrender.com", "tunnel1-tunnelinuser489.p.tnnl.in", 'localhost', '127.0.0.1', "0.0.0.0"]
+ALLOWED_HOSTS = ["first_pet_project.up.railway.app", "tunnel1-tunnelinuser489.p.tnnl.in", 'localhost', '127.0.0.1', "0.0.0.0"]
+CSRF_TRUSTED_ORIGINS = ["https://tunnel1-tunnelinuser489.p.tnnl.in", "https://first-pet-project-1.onrender.com", "https://first_pet_project.up.railway.app"]
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -234,7 +234,8 @@ PARLER_LANGUAGES = {
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51PLAVyDo5uaPJl4sZnu2nfKjDPjFQqgc24tfaMw4JnE0QsaVxRJ7tWiaUKpnFduAPfQbJpzr7Mge1d2wkNocl1hU00YSQk285H'
 STRIPE_SECRET_KEY = 'sk_test_51PLAVyDo5uaPJl4svwhpMCwmcRdLWVQjKmNm8ddxkxBh1ZrJtMDXqeQDpmeuuU2QPrONZurEjF6V3djGWlsT6mjc00pIB7NZLp'
 STRIPE_API_VERSION = '2024-04-10'
-STRIPE_WEBHOOK_SECRET = 'whsec_o4MTEkPB8tYpojzDIz8Llk7X47dOG4iw'
+STRIPE_WEBHOOK_SECRET = 'whsec_1OKFmYuMZuQL0t9Egu5YfYhZwgWyv6hM'
+# STRIPE_WEBHOOK_SECRET = 'whsec_o4MTEkPB8tYpojzDIz8Llk7X47dOG4iw'
 #STRIPE_WEBHOOK_SECRET = 'whsec_KzYJyda8cJe61FKMB9dVGDo8340Ab27z'
 #STRIPE_WEBHOOK_SECRET = 'whsec_13cd44143fc8bb61ae9f21b48ae61b975ebf30d8eec5cf49a9d407144d74d27b'
 
